@@ -28,9 +28,9 @@ jobs:
           # - dockercontext: ./Clean_Docker_LANDIS-II_8_AllExtensions
           #   dockerfile: ./Clean_Docker_LANDIS-II_8_AllExtensions/Dockerfile
           #   image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-linux
-          - dockercontext: ./Clean_Docker_LANDIS-II_8_Latest_Commits
-            dockerfile: ./Clean_Docker_LANDIS-II_8_Latest_Commits/Dockerfile
-            image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-latest
+          # - dockercontext: ./Clean_Docker_LANDIS-II_8_Latest_Commits
+          #   dockerfile: ./Clean_Docker_LANDIS-II_8_Latest_Commits/Dockerfile
+          #   image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-latest
           - dockercontext: .
             dockerfile: ./Docker-LANDIS-II-v7-release/Dockerfile
             image: ghcr.io/${{ github.repository_owner }}/landis-ii-v7-release
