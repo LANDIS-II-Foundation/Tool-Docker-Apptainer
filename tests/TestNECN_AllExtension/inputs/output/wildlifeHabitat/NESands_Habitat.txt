@@ -1,0 +1,13 @@
+LandisData  "Wildlife Habitat Output"
+
+Timestep  1
+
+OutputTimestep  10
+
+MapFileNames	output/wildlifeHabitat/{wildlifeName}-{timestep}.tif
+
+SuitabilityFiles  	./inputs/output/wildlifeHabitat/BBWOAgeForestType.txt
+			>> ./inputs/output/wildlifeHabitat/BBWOForestTypeTSF.txt
+			./inputs/output/wildlifeHabitat/BTBW.txt
+			./inputs/output/wildlifeHabitat/KIWA.txt
+			./inputs/output/wildlifeHabitat/STGR.txt

@@ -1,0 +1,8 @@
+LandisData  Ecoregions
+
+>>         Map
+>> Active  Code  Name   Description
+>> ------  ----  -----  -----------
+      no    0   eco0   "inactive"
+      yes    1   eco1   "well-drained rocky slopes - SW aspect"
+    

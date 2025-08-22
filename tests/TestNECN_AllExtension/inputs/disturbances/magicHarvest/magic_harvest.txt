@@ -1,0 +1,11 @@
+LandisData "Magic Harvest"
+
+Timestep 10
+
+HarvestExtensionParameterFile ./inputs/disturbances/magicHarvest/biomass-harvest_SetUp_s2e1.txt
+
+ProcessToLaunch python
+
+ProcessArguments "./inputs/disturbances/magicHarvest/switchManagementNames.py {timestep}"
+
+NoHarvestReInitialization false

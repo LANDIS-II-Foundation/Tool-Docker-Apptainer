@@ -1,0 +1,77 @@
+LandisData "BDA Agent"
+
+BDAAgentName		budworm
+BDPCalibrator		1
+SRDMode			mean
+>>StartYear 50
+>>EndYear   100
+
+
+>>----------------------------------
+>> BDA DISTURBANE REGIME PARAMETERS
+>>----------------------------------
+
+>>-------- Regional Outbreak Inputs -------------
+OutbreakPattern		CyclicNormal	<<CyclicNormal or CyclicUniform
+Mean			33.5
+StDev			10.6
+TimeSinceLastEpidemic	10		<<years
+TemporalType 		variablepulse	<<pulse or variablepulse
+MinROS			0
+MaxROS			3
+
+
+>>-------- Dispersal Inputs ----------------------
+Dispersal		no		<<yes or no
+DispersalRate		4000		<<meters/year
+EpidemicThresh		0.5
+InitialEpicenterNum	0
+OutbreakEpicenterCoeff	0.01
+OutbreakEpicenterThresh 0.0
+SeedEpicenter		yes		<<yes or no
+SeedEpicenterMax	25
+SeedEpicenterCoeff	0.5
+DispersalTemplate	MaxRadius	<<MaxRadius, 4N,
+					<<8N, 12N, or 24N
+
+>>-------- Neighborhood Resource Inputs -----------
+NeighborFlag	yes			<<yes or no
+NeighborSpeedUp none			<<none, 2x, 3x, or 4x
+NeighborRadius	150			<<meters
+NeighborShape	uniform			<<uniform, linear, or gaussian
+NeighborWeight	100
+
+
+>>-- Intensity Class Thresholds --
+>>IntensityClass1_BDP 	0.0 -- Hardwired value
+IntensityClass2_BDP 	0.25
+IntensityClass3_BDP 	0.50
+
+
+>>Ecoregion Modifiers
+
+
+DisturbanceModifiers
+>>SRD Modifer	Duration	Type
+    0.33	20		WindSeverity4 WindSeverity5 AspenClearcut
+   -0.25	20		Fire MaxAgeClearcut
+
+
+>>-------------------------
+>> BDA SEVERITY PARAMETERS
+>>--------------------------
+
+BDASpeciesParameters
+>>         -------------Host Value--------------  -------------Susceptibility-------------
+>>Species  MinorHost    2ndHost      MajorHost    Class3        Class2        Class1	    CFS
+>>Name     Age SRDProb  Age SRDProb  Age SRDProb  Age VulnProb  Age VulnProb  Age VulnProb  Conifer?
+>> ---------------------------------------------------------------------------------------------
+abiebals   0   0.25	20  0.5	     40  1.0	  11  1.0	20  1.0	     50  1.0		yes
+piceglau   0   0.25	20  0.5      40  1.0	  0   0		20  0.15     50  0.42		yes
+
+IgnoredSpecies
+pinubank
+pinuresi
+pinustro
+thujocci
+

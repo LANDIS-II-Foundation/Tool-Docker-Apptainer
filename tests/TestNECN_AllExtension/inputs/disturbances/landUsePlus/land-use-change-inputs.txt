@@ -1,0 +1,73 @@
+LandisData   "Land Use"  << this is 7.0
+
+Timestep    5
+
+InputMaps	./inputs/disturbances/landUsePlus/landuse-{timestep}.tif
+
+SiteLog		output/landUsePlus/site-log.csv  <<optional:  default=don't generate log
+
+>>  ExternalScript "C:/Users/dml486/Desktop/LUtesting/singlecell/test_simple.R"
+>>   ExternalExecutable "C:\Program Files\R\R-3.3.1\bin\RScript.exe"
+>> ExternalCommand "Rscript test_simple.R"  <<test_R-insects<<  
+
+>>------------------------------->>------------------------------------
+
+LandUse          forest
+>>------------------------------------
+MapCode          4 
+AllowHarvest?    no 
+LandCoverChange  NoChange
+>>------------------------------------
+LandUse          "FIPSandHarvest"
+>>------------------------------------
+MapCode          3
+AllowHarvest?    yes
+>>         PreventEstablishment  
+ LandCoverChange  RemoveTrees
+ >>RepeatHarvest?   yes
+  		acerrubr 1-200(20%)
+		pinustro  50-300(30%)
+		querrubr 50-200 (40%)
+		abiebals 1-100 (10%)
+		
+ LandCoverChange	 InsectDefoliation 
+>>   RepeatHarvest?    yes
+    		querrubr 1-300 (60%) 
+
+>>------------------------------------
+LandUse          "RemoveTreesOnly"  
+>>------------------------------------
+ MapCode          2  <<time0==4
+ AllowHarvest?    yes
+>>         PreventEstablishment  
+ LandCoverChange  RemoveTrees
+ >>RepeatHarvest?   yes
+  		acerrubr 1-200(20%)
+		pinustro  50-300(30%)
+		querrubr 50-200 (40%)
+>>  Plant fraxamer
+>> PreventEstablishment  <<prevent establishment implemented before LandCoverChange
+>> LandCoverChange	 InsectDefoliation <<removes the set percentage of foliage biomass
+>>   RepeatHarvest?    yes
+    >> 	acerrubr 1-100 (40%) 
+>>		tsugcana 45-100 (20%)
+>> Plant	ulmuamer
+
+>>------------------------------------
+LandUse          "FIPS" <<"Urban  development"
+>>------------------------------------
+MapCode          1
+AllowHarvest?    yes
+>>  PreventEstablishment   << Optional
+ >>LandCoverChange  RemoveTrees
+>> RepeatHarvest?   yes
+ >> 		acerrubr 1-100(40%)
+>>		pinustro  100-300(20%)
+>>		tsugcana 45-100 (20%)
+ 	
+      LandCoverChange	 InsectDefoliation <<removes the set percentage of foliage biomass
+      RepeatHarvest?    no
+            	querrubr 1-300 (75%) 
+		pinustro 1-62 (20%) 71-200 (25%)  
+	
+>>Plant fraxamer

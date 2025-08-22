@@ -1,0 +1,57 @@
+LandisData  "Dynamic Fuel System"
+
+>> Note:  All inputs are provided as examples only.  They are not intended to serve as default values.
+
+Timestep  10
+
+>> 		 Fuel 
+>> Species 	 Coefficient 
+>> -------- 	----------- 
+   abiebals	  1.00
+   acerrubr       0.50
+   acersacc       1.00
+   betualle       1.00
+   fraxamer       1.00
+   piceglau       1.00
+   pinubank	  1.00
+   pinuresi	  1.00
+   pinustro	  1.00
+   poputrem       1.00
+   querelli       1.00
+   querrubr       1.00
+   thujocci       1.00
+   tiliamer       1.00
+
+HardwoodMaximum 15
+
+DeadFirMaxAge 15
+
+FuelTypes
+
+>> The examples given below were designed to assign fuel types to one of the Canadian Fire Behavior System fuel types.
+>> Users are not limited to these fuel types.
+
+>> Fuel Type  BaseFuel  		Age Range	Species
+>> ---------  --------     		---------	----------
+      1		Conifer			0 to 900	thujocci
+      2		Conifer			0 to 500	piceglau abiebals 
+      3 	Conifer			41 to 100	pinubank
+      4		Conifer			0 to 40		pinubank
+      16	Open			0 to 20 	pinustro pinuresi
+      5 	Conifer			20 to 400	pinustro pinuresi
+      6 	ConiferPlantation	0 to 100	piceglau -abiebals -pinubank -pinustro
+      8 	Deciduous 		0 to 300	acerrubr acersacc betualle fraxamer poputrem betupapy querelli querrubr tiliamer
+
+DisturbanceConversionTable
+>> Fuel Type	Duration       Disturbance Description
+>> ---------	---------	--------
+	14	20		WindSeverity3 AspenClearcut
+	13	20		WindSeverity4 MaxAgeClearcut
+	15	20		WindSeverity5 
+>>	6	40		ClearcutSprucePlant	<< If a harvest prescription includes planting, 
+							<< this entry could be an alternative method for assigning fuel type 6
+
+MapFileNames		output/dynamicBiomassFuels/FuelType-{timestep}.tif
+PctConiferFileName	output/dynamicBiomassFuels/PctConifer-{timestep}.tif
+PctDeadFirFileName	output/dynamicBiomassFuels/PctDeadFir-{timestep}.tif
+

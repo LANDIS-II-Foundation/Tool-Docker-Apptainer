@@ -1,0 +1,10 @@
+LandisData  "Output Biomass-by-Age"
+
+Timestep   10
+
+MapNames   output/biomassByAge/{species}-{ageclass}-{timestep}.tif
+
+Species		querrubr ageclass1(50-100) ageclass2(>100)
+		pinubank ageclass1(75-150) ageclass2(>150)
+		pinustro ageclass1(75-150) ageclass2(150-250) ageclass3(>250)
+		acersacc ageclass1(50-200) 					 
