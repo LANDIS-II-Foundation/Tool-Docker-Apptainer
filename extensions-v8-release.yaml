@@ -23,7 +23,7 @@
 
 - repo: Extension-NECN-Succession
   org: LANDIS-II-Foundation
-  commit: 6d8451e24bf6df5845a98c314540686b6f1d20a9
+  commit: 2b3aa3e5cd6ba011e704423f1f0a397905615ecb
 
 - repo: Extension-PnET-Succession
   org: aruzicka555
@@ -68,7 +68,7 @@
 
 - repo: Extension-Social-Climate-Fire
   org: LANDIS-II-Foundation
-  commit: 9206bc0c5cded05941a8405cc5956f00c5b4b103
+  commit: a79e7421be7bedcfc15db0be35c92e79bea009ad
 
 - repo: LANDIS-II-Forest-Roads-Simulation-extension
   org: Klemet
@@ -89,7 +89,7 @@
 
 - repo: Extension-Output-Biomass-Community
   org: LANDIS-II-Foundation
-  commit: 5942e9bebafb0a618e8f46195aac0b118de4ae31
+  commit: 44d321d831d0eb23d3040e2c3cade4ea4a368ad7
 
 - repo: Extension-Output-Biomass-PnET
   org: LANDIS-II-Foundation
