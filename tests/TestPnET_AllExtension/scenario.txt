@@ -26,9 +26,7 @@ CellLength  30 << meters, so cell area = 900 m2
 >> 	"Original Fire"		./inputs/disturbances/originalFire/original-fire.txt
 
 >> Climate-social Fire
->> Currently working because of an issue where it gets trapped in an infinite loop.
->> Matthew Garcia will soon make an issue on their repository
->> "Social Climate Fire"  ./inputs/disturbances/climateSocialFire/Social-Climate-Fire-Inputs.txt
+"Social Climate Fire"  ./inputs/disturbances/climateSocialFire/Social-Climate-Fire-Inputs.txt
 
 >> Dynamic Biomass Fuels
 	"Dynamic Fuel System"	./inputs/disturbances/dynamicBiomassFuels/dynamic-fire_SetUpFuel.txt

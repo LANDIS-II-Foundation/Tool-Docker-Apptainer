@@ -1,0 +1,38 @@
+LandisData  "Original Wind"
+
+Timestep  5
+
+
+>>-------------------------------------
+>> WIND DISTURBANCE REGIME PARAMETERS
+>>------------------------------------
+
+>>             ___ Event Size ___   Rotation
+>> Ecoregion    Max   Mean    Min   Period
+>> ---------   ----   ----   ----   --------
+    eco1        400    100      4     100
+
+
+>>-----------------------------------
+>> WIND SEVERITY PARAMETERS
+>>------------------------------------
+ 
+WindSeverities
+
+ >>            Cohort Age       Mortality
+ >> Severity   % of longevity   Probability
+ >> --------   --------------   -----------
+       5          0% to  20%       0.05
+       4         20% to  50%       0.1
+       3         50% to  70%       0.5
+       2         70% to  85%       0.85
+       1         85% to 100%       0.95
+
+
+>>-------------
+>> OUTPUTS
+>>-------------
+
+MapNames 	output/originalWind/severity-{timestep}.tif
+SummaryLogFile		output/originalWind/wind-summary-log.csv
+EventLogFile	output/originalWind/wind-events-log.csv

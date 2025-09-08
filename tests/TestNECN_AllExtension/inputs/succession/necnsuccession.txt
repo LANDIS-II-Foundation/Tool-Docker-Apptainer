@@ -1,0 +1,63 @@
+LandisData	"NECN Succession"
+
+Timestep  5
+
+SeedingAlgorithm  WardSeedDispersal
+
+InitialCommunitiesCSV      ./inputs/succession/initial-communities.csv
+InitialCommunitiesMap   ./inputs/succession/initial-communities.img
+ClimateConfigFile 	./inputs/disturbances/climateSocialFire/climate-generator-baseline.txt	
+
+SoilDepthMapName				./inputs/succession/random110.tif 
+SoilDrainMapName				./inputs/succession/constantpoint75.tif 
+SoilBaseFlowMapName				./inputs/succession/constantpoint4.tif 
+SoilStormFlowMapName			./inputs/succession/constantpoint4.tif
+SoilFieldCapacityMapName		./inputs/succession/random_point1_point2.tif
+SoilWiltingPointMapName			./inputs/succession/random_point05_point099.tif
+SoilPercentSandMapName			./inputs/succession/random_point01_point5.tif
+SoilPercentClayMapName			./inputs/succession/random_point01_point5.tif
+InitialSOM1CsurfMapName			./inputs/succession/random110.tif
+InitialSOM1NsurfMapName			./inputs/succession/random6.tif
+InitialSOM1CsoilMapName			./inputs/succession/random110.tif
+InitialSOM1NsoilMapName			./inputs/succession/random9.tif
+InitialSOM2CMapName				./inputs/succession/random4500.tif
+InitialSOM2NMapName				./inputs/succession/random145.tif
+InitialSOM3CMapName				./inputs/succession/random1294.tif
+InitialSOM3NMapName				./inputs/succession/random50.tif
+InitialDeadWoodSurfaceMapName	./inputs/succession/random110.tif 
+InitialDeadCoarseRootsMapName	./inputs/succession/random50.tif
+
+CalibrateMode 	no
+SmokeModelOutputs no  << produces additional maps that are valuable for modeling smoke
+WaterDecayFunction Ratio <<Linear or Ratio
+
+
+ProbabilityEstablishAdjust 	1.0
+InitialMineralN			2.0
+InitialFineFuels 		0.99  << a fraction 0-1.0 of dead wood.
+AtmosphericNSlope		0.05
+AtmosphericNIntercept		0.05
+Latitude			44.0
+DenitrificationRate		0.001
+DecayRateSurf			0.01
+DecayRateSOM1			0.01
+DecayRateSOM2			0.2
+DecayRateSOM3			0.001
+
+SpeciesParameters ./inputs/succession/NECN_Spp_Table.csv
+
+FireReductionParameters
+>>	Severity	WoodLitter	Litter	CohortWood	CohortFoliar	SOM
+>>	Fire		Reductions------------------------------------------------->
+	1		0.0		0.5	0.05		0.85		0.1
+	2		0.5		0.75	0.15		0.95		0.5
+	3		1.0		1.0	0.35		1.0		0.75		
+
+HarvestReductionParameters
+>>	Name		WoodLitter	Litter	SOM		CohortWood	CohortLeaf
+>>			Reduct		Reduct	Reduction	Removal		Removal
+	MaxAgeClearcut	0.5		0.15	0.2		0.8		0.15
+	PatchCutting	1.0		1.0	1.0		1.0		1.0
+
+
+   

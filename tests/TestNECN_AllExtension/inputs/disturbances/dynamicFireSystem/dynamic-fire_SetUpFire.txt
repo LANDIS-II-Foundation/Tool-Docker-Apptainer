@@ -1,0 +1,88 @@
+LandisData  "Dynamic Fire System"
+
+Timestep  10
+
+Species_CSV_File ./inputs/disturbances/dynamicFireSystem/DynamicFire_Spp_Table.csv
+
+>>---------------------------------------
+>> FIRE INPUTS
+>>----------------------------------------
+
+EventSizeType	size_based  		<<'size-based' or 'duration_based'
+
+
+BuildUpIndex	Y			<< yes or no; Y or N
+
+
+>> Fire Region Data Table
+>> Fire region| Fire Size    | Seasonal Foliar Moisture Content (FMC) Data: Hi, Lo, and Proportion (Pr) | Other Ecorgion Data
+>>            |              | Spring (Sp)            Summer (Su)             Fall (Fa)                 |           
+>> Code Name  | Mu Sigma Max | SpFMCLo SpFMCHi SpHiPr SuFMCLo SuFMCHi SuFMCPr FaFMCLo FaFMCHi FaHiPr    | OpenFuel NumIgns 
+>> -----------  ------------   ------------------------------------------------------------------------   ----------------
+   1    fire1   4.0  0.1  50   85      100     0.50   92      120     0.50    120     120     0.50        2         0.5
+
+InitialFireEcoregionsMap  	./inputs/core/ecoregion.img
+
+
+
+DynamicEcoregionTable
+>>Year	FileName
+
+GroundSlopeFile        		./inputs/disturbances/dynamicFireSystem/GroundSlope.tif
+UphillSlopeAzimuthMap  		./inputs/disturbances/dynamicFireSystem/UphillSlope.tif
+
+
+SeasonTable
+>> Season  Leaf,    Prop of  Percent  DayLength
+>> Name    Status   Fires    Curing   Proportion
+>> ------  -------  -------  -------  ----------
+   Spring  LeafOff  0.20     50		1.0
+   Summer  LeafOn   0.50     51		1.0
+   Fall    LeafOff  0.30     100	1.0
+
+InitialWeatherDatabase  	./inputs/disturbances/dynamicFireSystem/dynamic-fire_WeatherData.csv  << Example weather from Labrador
+
+DynamicWeatherTable
+>>Year  FileName
+
+FuelTypeTable
+>> Allowed base types:  Conifer, ConiferPlantation, Deciduous, Slash, Open
+>> Allowed surface types:  See Canadian Fire Behavior System (CFBS)
+>> The fuel types in the example file (below) are derived from the CFBS.
+
+>> Index  BaseType  		SurfaceType InitProb a   b      c   q    BUI maxBE CBH
+>> -----  --------  		----------- -------- --- ---    --- ---  --- ----- ---
+   1      Conifer   		C1          1.0      90  0.0649 4.5 0.90 72  1.076 2
+   2      Conifer   		C2          1.0      110 0.0282 1.5 0.70 64  1.321 3
+   3      Conifer   		C3          1.0      110 0.0444 3.0 0.75 62  1.261 8
+   4      Conifer   		C4          1.0      110 0.0293 1.5 0.80 66  1.184 4
+   5      Conifer   		C5          1.0      30  0.0697 4.0 0.80 56  1.220 18
+   6      ConiferPlantation   	C6  	    1.0      30  0.0800 3.0 0.80 62  1.197 7
+   7      Conifer   		C7          1.0      45  0.0305 2.0 0.85 106 1.134 10
+   8      Deciduous 		D1          0.5      30  0.0232 1.6 0.90 32  1.179 0
+   9      Conifer   		M1          1.0      0   0      0   0.80 50  1.250 0
+  10      Conifer   		M2          1.0      0   0      0   0.80 50  1.250 6
+  11      Conifer   		M3          1.0      0   0      0   0.80 50  1.250 6
+  12      Conifer   		M4          1.0      0   0      0   0.80 50  1.250 6
+  13      Slash     		S1          1.0     75   0.0297 1.3 0.75 38  1.460 0
+  14      Slash     		S2          1.0     40   0.0438 1.7 0.75 63  1.256 0
+  15      Slash     		S3          1.0     55   0.0829 3.2 0.75 31  1.590 0
+  16      Open      		O1a         1.0     190  0.0310 1.4 1.0   1  1.000 0
+  17      Open      		O1b         1.0     250  0.0350 1.7 1.0   1  1.000 0
+
+SeverityCalibrationFactor  1
+
+FireDamageTable
+>> Cohort Age       FireSeverity - 
+>> % of longevity   FireTolerance
+>> --------------   --------------
+     20%               -2
+     50%               -1
+     85%                0
+    100%                1
+
+
+MapNames  		output/dynamicFireSystem/severity-{timestep}.tif
+LogFile   		output/dynamicFireSystem/dynamic-fire-event-log.csv
+SummaryLogFile 		output/dynamicFireSystem/summary-log.csv
+

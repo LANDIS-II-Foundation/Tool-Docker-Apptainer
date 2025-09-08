@@ -1,0 +1,94 @@
+LandisData  Scenario
+	  
+Duration  50
+Species   ./inputs/core/species.txt
+
+Ecoregions      ./inputs/core/ecoregion.txt
+EcoregionsMap   ./inputs/core/ecoregion.img
+
+CellLength  30 << meters, so cell area = 900 m2
+
+
+
+>> Succession Extension     Initialization File
+>> --------------------     -------------------
+   "NECN Succession"    ./inputs/succession/necnsuccession.txt
+ 
+
+
+>> Disturbance Extensions   Initialization File
+>> ----------------------   -------------------
+
+>> LISTING EXTENSIONS THAT WE HAVE TO PUT HERE
+>> We can put several of the same type and simply switch (have several scenario files with commented lines)
+
+>> Original Fire (Formerly Base Fire)
+>> 	"Original Fire"		./inputs/disturbances/originalFire/original-fire.txt
+
+>> Climate-social Fire
+ "Social Climate Fire"  ./inputs/disturbances/climateSocialFire/Social-Climate-Fire-Inputs.txt
+
+>> Dynamic Biomass Fuels
+	"Dynamic Fuel System"	./inputs/disturbances/dynamicBiomassFuels/dynamic-fire_SetUpFuel.txt
+
+>> Dynamic Fire system
+ 	"Dynamic Fire System"	./inputs/disturbances/dynamicFireSystem/dynamic-fire_SetUpFire.txt
+
+>> Magic Harvest + Biomass Harvest
+   "Magic Harvest"       ./inputs/disturbances/magicHarvest/magic_harvest.txt
+   "Biomass Harvest"       ./inputs/disturbances/magicHarvest/biomass-harvest_SetUp_s2e1.txt
+
+>> Biomass Harvest alone
+ 	"Biomass Harvest"       ./inputs/disturbances/biomassHarvest/harvest_SetUp.txt
+
+>> FRS module
+    "Forest Roads Simulation"    ./inputs/disturbances/forestRoadsSimulation/roads.txt
+
+>> Original Wind
+	"Original Wind" 	./inputs/disturbances/originalWind/original-wind.txt
+
+>> Linear Wind
+   "Linear Wind"      ./inputs/disturbances/linearWind/LinearWind_Input.txt
+
+>> Hurricane
+  "Hurricane"      ./inputs/disturbances/biomassHuricane/Hurricane_v3.txt
+
+>> Climate BDA (Formerly Base BDA)
+  "Climate BDA"     ./inputs/disturbances/climateBDA/Climate-BDA_SetUp.txt
+
+>> Land-Use Plus
+   "Land Use Change"      ./inputs/disturbances/landUsePlus/land-use-change-inputs.txt
+
+>> Output Extensions        Initialization File
+>> -----------------        -------------------
+
+>> LISTING EXTENSIONS THAT WE HAVE TO PUT HERE
+
+>> Max Species age
+  "Output Max Species Age"	./inputs/output/MaxSpeciesAge/output_MaxSppAge.txt
+
+>> Biomass-by-age
+	"Output Biomass-by-Age"		./inputs/output/BiomassByAge/output_Biomass-by-Age.txt		
+
+>> Biomass Community
+	"Output Biomass Community"	./inputs/output/BiomassCommunity/output_Biomass_Community.txt		
+
+>> Biomass output
+	"Output Biomass"		./inputs/output/BiomassOutput/output_Biomass.txt		
+
+>> Biomass Reclassification
+	"Output Biomass Reclass"	./inputs/output/BiomassReclassification/output_BiomassReclass.txt		
+
+>> Cohort statistics outputs
+  "Output Cohort Statistics"	./inputs/output/cohortStatistics/output_CohortStats.txt
+
+>> Local Habitat suitability
+  "Local Habitat Output"  ./inputs/output/localHabitatSuitability/Habitat_input.txt
+
+>> Wildlife habitat output
+  "Wildlife Habitat Output"  ./inputs/output/wildlifeHabitat/NESands_Habitat.txt
+
+>> Biomass Output PnET
+  "Output-PnET"		./inputs/output/BiomassOutputPnET/biomass.outputPnET.txt
+
+ RandomNumberSeed	1111
