@@ -2,7 +2,7 @@
 
 <h1 align="center">LANDIS-II Docker and Apptainer</h1>
 
-Ressources to create and use a Docker Image and an Apptainer containing the [LANDIS-II model](https://www.landis-ii.org/) and its extensions, for use on almost any environment, including supercomputing clusters.
+Resources to create and use a Docker Image and an Apptainer containing the [LANDIS-II model](https://www.landis-ii.org/) and its extensions, for use on almost any environment, including supercomputing clusters.
 
 ## 🐋 What is Docker ?
 
