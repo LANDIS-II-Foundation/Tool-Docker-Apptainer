@@ -2,7 +2,7 @@
 
 <h1 align="center">LANDIS-II Docker and Apptainer</h1>
 
-Ressources to create and use a Docker Image and an Apptainer containing the [LANDIS-II model](https://www.landis-ii.org/) and its extensions, for use on almost any environment, including supercomputing clusters.
+Resources to create and use a Docker Image and an Apptainer containing the [LANDIS-II model](https://www.landis-ii.org/) and its extensions, for use on almost any environment, including supercomputing clusters.
 
 ## 🐋 What is Docker ?
 
@@ -68,14 +68,15 @@ These images provide a minimal LANDIS-II installation, including GDAL, plus a py
 | `landis-ii-v8-linux`   | `Clean_Docker_LANDIS-II_8_AllExtensions/`  | LANDIS-II v8 (Ubuntu 22.04); fixed versions of v8 extensions; **superseded by `landis-ii-v8-release`** |
 | `landis-ii-v8-release` | `Docker-LANDIS-II-v8-release/`             | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml) |
 
-### Rstudio images
+### R/Rstudio images
 
-These images are based on the generic images and add R and a running Rstudio Server instance.
+These images are based on the generic images and add R and/or a running Rstudio Server instance.
 
 **LANDIS-II v8 images**
 
 | Image name             | Subdirectory                               | Description                                         |
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
+| `landis-ii-v8-r`       | `Docker-LANDIS-II-v8-release-R/`           | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml); |
 | `landis-ii-v8-rstudio` | `Docker-LANDIS-II-v8-release-Rstudio/`     | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml); Rstudio Server |
 
 ### Other custom images

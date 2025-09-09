@@ -1,6 +1,6 @@
 # LANDIS-II-v8-Rstudio
 
-This image closely follows the `Docker-LANDIS-II-release` image but uses `rocker/geospatial:4.5.0` as the base image,
+This image closely follows the `Docker-LANDIS-II-release` image but uses `rocker/geospatial:4.5.1` as the base image,
 so it provides an Rstudio Server instance for interactive workflows.
 
 ## Build the image

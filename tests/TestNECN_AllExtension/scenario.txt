@@ -1,5 +1,5 @@
 LandisData  Scenario
-	  
+
 Duration  50
 Species   ./inputs/core/species.txt
 
@@ -13,7 +13,7 @@ CellLength  30 << meters, so cell area = 900 m2
 >> Succession Extension     Initialization File
 >> --------------------     -------------------
    "NECN Succession"    ./inputs/succession/necnsuccession.txt
- 
+
 
 
 >> Disturbance Extensions   Initialization File
@@ -32,14 +32,14 @@ CellLength  30 << meters, so cell area = 900 m2
 	"Dynamic Fuel System"	./inputs/disturbances/dynamicBiomassFuels/dynamic-fire_SetUpFuel.txt
 
 >> Dynamic Fire system
- 	"Dynamic Fire System"	./inputs/disturbances/dynamicFireSystem/dynamic-fire_SetUpFire.txt
+>> 	"Dynamic Fire System"	./inputs/disturbances/dynamicFireSystem/dynamic-fire_SetUpFire.txt
 
 >> Magic Harvest + Biomass Harvest
    "Magic Harvest"       ./inputs/disturbances/magicHarvest/magic_harvest.txt
    "Biomass Harvest"       ./inputs/disturbances/magicHarvest/biomass-harvest_SetUp_s2e1.txt
 
 >> Biomass Harvest alone
- 	"Biomass Harvest"       ./inputs/disturbances/biomassHarvest/harvest_SetUp.txt
+>> 	"Biomass Harvest"       ./inputs/disturbances/biomassHarvest/harvest_SetUp.txt
 
 >> FRS module
     "Forest Roads Simulation"    ./inputs/disturbances/forestRoadsSimulation/roads.txt
@@ -68,16 +68,16 @@ CellLength  30 << meters, so cell area = 900 m2
   "Output Max Species Age"	./inputs/output/MaxSpeciesAge/output_MaxSppAge.txt
 
 >> Biomass-by-age
-	"Output Biomass-by-Age"		./inputs/output/BiomassByAge/output_Biomass-by-Age.txt		
+	"Output Biomass-by-Age"		./inputs/output/BiomassByAge/output_Biomass-by-Age.txt
 
 >> Biomass Community
-	"Output Biomass Community"	./inputs/output/BiomassCommunity/output_Biomass_Community.txt		
+	"Output Biomass Community"	./inputs/output/BiomassCommunity/output_Biomass_Community.txt
 
 >> Biomass output
-	"Output Biomass"		./inputs/output/BiomassOutput/output_Biomass.txt		
+	"Output Biomass"		./inputs/output/BiomassOutput/output_Biomass.txt
 
 >> Biomass Reclassification
-	"Output Biomass Reclass"	./inputs/output/BiomassReclassification/output_BiomassReclass.txt		
+	"Output Biomass Reclass"	./inputs/output/BiomassReclassification/output_BiomassReclass.txt
 
 >> Cohort statistics outputs
   "Output Cohort Statistics"	./inputs/output/cohortStatistics/output_CohortStats.txt

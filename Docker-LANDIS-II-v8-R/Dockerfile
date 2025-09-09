@@ -1,4 +1,4 @@
-FROM rocker/geospatial:4.5.1
+FROM rocker/r-ver:4.5.1
 
 LABEL org.opencontainers.image.authors="clem.hardy@pm.me; achubaty@for-cast.ca;"
 
@@ -10,6 +10,9 @@ ENV C_INCLUDE_PATH=/usr/include/gdal
 ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C.UTF-8
+
+## install geospatial libraries
+RUN rocker_scripts/install_geospatial.sh
 
 ## update and install additional system dependencies:
 ## - `mono-utils` provides `monodis` used to debug ext/lib builds;
