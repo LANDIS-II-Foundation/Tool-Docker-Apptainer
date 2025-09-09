@@ -18,8 +18,8 @@
 #   commit: dde267702c587c10d04951f4c4ea754ebeb67bfa ## v8 branch
 
 - repo: Extension-ForCS-Succession
-  org: aruzicka555
-  commit: 8ebaf44fd49498b3f1312faafd85333d5b95b86b ## Austen's v8 branch
+  org: LANDIS-II-Foundation
+  commit: b761895100a7b30174dd78523d57cc63c592c887
 
 - repo: Extension-NECN-Succession
   org: LANDIS-II-Foundation
