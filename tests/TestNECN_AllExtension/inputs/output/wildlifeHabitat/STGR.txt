@@ -1,0 +1,43 @@
+LandisData  	HabitatSuitabilityFile
+WildlifeName	STGR
+
+SuitabilityType  AgeClass_ForestType	<< 'AgeClass_ForestType'
+					<< 'AgeClass_TimeSinceFire'
+					<< 'ForestType_TimeSinceFire'
+ReclassCoefficients
+>>	Species		ReclassCoeff
+>>	--------	------------
+	abiebals	1.0
+	acerrubr	1.0
+	acersacc	1.0
+	betualle	1.0
+	betupapy	1.0
+	fraxamer	1.0
+	piceglau	1.0
+	pinubank	1.0
+	pinuresi	1.0
+	pinustro	1.0
+	poputrem	1.0
+	querelli	1.0
+	querrubr	1.0
+	thujocci	1.0
+	tiliamer	1.0
+
+
+ForestTypeTable
+>>	Forest Type		Species
+>> 	-----------		-------
+	Forest			acerrubr acersacc betualle fraxamer poputrem querelli querrubr tiliamer abiebals piceglau pinustro thujocci pinubank 
+	Other			pinuresi
+	Open			betupapy 	
+
+
+SuitabilityTable
+<< ForestType	Maximum Age Values
+<< ----------	--------------------
+		10	20	9999
+<<		Suitability Values
+<<		--------------------
+Forest		1	0	0
+Other		0	0	0
+Open		2	2	2

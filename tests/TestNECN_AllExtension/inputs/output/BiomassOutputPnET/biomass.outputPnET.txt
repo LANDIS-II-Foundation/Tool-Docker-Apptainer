@@ -1,0 +1,30 @@
+LandisData  "Output-PnET"
+
+Timestep  10
+
+Species ALL
+	  
+WoodBiomass	output/WoodBiomass/{species}/WoodBiomass-{timestep}.img
+FoliageBiomass output/FoliageBiomass/{species}/FoliageBiomass-{timestep}.img
+RootBiomass output/RootBiomass/{species}/RootBiomass-{timestep}.img
+NSC output/NSC/{species}/NSC-{timestep}.img
+WoodySenescence output/WoodySenescence/{species}/WoodySenescence-{timestep}.img
+FoliageSenescence output/FoliageSenescence/{species}/FoliageSenescence-{timestep}.img
+AETAvg output/AETAvg/{species}/AETAvg-{timestep}.img
+PET output/PET/{species}/PET-{timestep}.img
+AgeDistribution output/AgeDistribution/{species}/AgeDistribution-{timestep}.img
+AnnualPsn output/AnnualPsn/{species}/AnnualPsn-{timestep}.img
+CohortsPerSpecies output/CohortsPerSpecies/{species}/CohortsPerSpecies-{timestep}.img
+Establishment output/Establishment/{species}/Establishment-{timestep}.img
+EstablishmentProbability output/EstablishmentProbability/{species}/EstablishmentProbability-{timestep}.img
+LeafAreaIndex output/LeafAreaIndex/{species}/LeafAreaIndex-{timestep}.img
+MonthlyFolResp output/MonthlyFolResp/MonthlyFolResp-{timestep}.img
+MonthlyGrossPsn output/MonthlyGrossPsn/MonthlyGrossPsn-{timestep}.img
+MonthlyNetPsn output/MonthlyNetPsn/MonthlyNetPsn-{timestep}.img
+MonthlyMaintResp output/MonthlyMaintResp/MonthlyMaintResp-{timestep}.img
+WoodyDebris output/WoodyDebris/WoodyDebris-{timestep}.img
+SubCanopyPAR output/SubCanopyPAR/SubCanopyPAR-{timestep}.img
+Water output/Water/Water-{timestep}.img
+CohortBalance output/CohortBalance.csv
+EstablishmentTable output/EstablishmentTable.csv
+MortalityTable output/MortalityTable.csv
