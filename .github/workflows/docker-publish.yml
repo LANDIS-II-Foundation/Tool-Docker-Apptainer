@@ -38,9 +38,12 @@ jobs:
             dockerfile: ./Docker-LANDIS-II-v8-release/Dockerfile
             image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-release
           - dockercontext: .
+            dockerfile: ./Docker-LANDIS-II-v8-R/Dockerfile
+            image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-R
+          - dockercontext: .
             dockerfile: ./Docker-LANDIS-II-v8-Rstudio/Dockerfile
             image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-Rstudio
-    
+
     ## Set the permissions granted to the `GITHUB_TOKEN` for the actions in this job
     permissions:
       contents: read
