@@ -39,7 +39,7 @@ CellLength  30 << meters, so cell area = 900 m2
    "Biomass Harvest"       ./inputs/disturbances/magicHarvest/biomass-harvest_SetUp_s2e1.txt
 
 >> Biomass Harvest alone
- 	"Biomass Harvest"       ./inputs/disturbances/biomassHarvest/harvest_SetUp.txt
+>> 	"Biomass Harvest"       ./inputs/disturbances/biomassHarvest/harvest_SetUp.txt
 
 >> FRS module
     "Forest Roads Simulation"    ./inputs/disturbances/forestRoadsSimulation/roads.txt
