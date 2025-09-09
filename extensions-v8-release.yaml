@@ -89,7 +89,7 @@
 
 - repo: Extension-Output-Biomass-Community
   org: LANDIS-II-Foundation
-  commit: 44d321d831d0eb23d3040e2c3cade4ea4a368ad7
+  commit: df71d7fd397b0de304878cba760c397388e56cbe
 
 - repo: Extension-Output-Biomass-PnET
   org: LANDIS-II-Foundation
