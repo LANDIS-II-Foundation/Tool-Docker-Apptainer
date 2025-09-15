@@ -137,7 +137,7 @@ RUN scripts/add_console_csproj_dlls.sh $LANDIS_DIR \
 
 COPY ./tests $TESTS_DIR
 
-WORKDIR $TESTS_DIR/TestPnET_AllExtension
+WORKDIR $TESTS_DIR/TestNECN_AllExtension
 
 RUN dotnet $LANDIS_CONSOLE scenario.txt
 
