@@ -11,7 +11,7 @@
 ## Succession Extensions
 - repo: Extension-Biomass-Succession
   org: LANDIS-II-Foundation
-  commit: ad5c2521d1d9deaec6cb18ee56b17c46a58806b2
+  commit: 7802869231c7109ddc85ac7c9f92113bc5d6353f
 
 # - repo: Extension-DGS-Succession
 #   org: LANDIS-II-Foundation
