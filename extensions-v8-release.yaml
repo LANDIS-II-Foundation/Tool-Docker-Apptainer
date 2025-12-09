@@ -23,7 +23,7 @@
 
 - repo: Extension-NECN-Succession
   org: LANDIS-II-Foundation
-  commit: 2b3aa3e5cd6ba011e704423f1f0a397905615ecb
+  commit: 94e34843f36c4e58865e1b555f7766769765ea2b
 
 - repo: Extension-PnET-Succession
   org: aruzicka555
