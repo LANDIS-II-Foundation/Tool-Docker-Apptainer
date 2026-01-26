@@ -26,8 +26,8 @@
   commit: 2b3aa3e5cd6ba011e704423f1f0a397905615ecb
 
 - repo: Extension-PnET-Succession
-  org: aruzicka555
-  commit: 8cd34cd223e5cfbf9b63e2582ff863e2c2d37d07 ## Austen's master branch
+  org: LANDIS-II-Foundation
+  commit: 5e7e5f95d6a1f47b5a8b62cd92c4598aa0b85d78 ## Austen's master branch
 
 ## Disturbance and Other Extensions
 - repo: Extension-Base-BDA

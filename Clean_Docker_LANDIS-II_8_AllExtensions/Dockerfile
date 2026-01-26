@@ -129,7 +129,7 @@ RUN cd $LANDIS_FOLDER \
 RUN cd $LANDIS_FOLDER \
   # Commit 8cd34cd223e5cfbf9b63e2582ff863e2c2d37d07 is the most recent at date of writing.
   # Testing an update from Austen !
-  && ./downloadSpecificGitCommitAndFolder.sh https://github.com/aruzicka555/Extension-PnET-Succession.git 8cd34cd223e5cfbf9b63e2582ff863e2c2d37d07 /src \
+  && ./downloadSpecificGitCommitAndFolder.sh https://github.com/LANDIS-II-Foundation/Extension-PnET-Succession 5e7e5f95d6a1f47b5a8b62cd92c4598aa0b85d78 /src \
   && cd $LANDIS_FOLDER/Extension-PnET-Succession/src \
   && python $LANDIS_FOLDER/editing_csproj_LANDIS-II_files.py ./PnET-Succession.csproj \
   # We need to remove the .sln file; it's not useful to build, and is full of bad/missing references to other projects.
@@ -140,10 +140,10 @@ RUN cd $LANDIS_FOLDER \
   # We remove the files
   && cd $LANDIS_FOLDER/ && rm -r Extension-PnET-Succession \
   # To finish, we have to transfer some "Default files" of PnET in the extension folder
-  && ./downloadSpecificGitCommitAndFolder.sh https://github.com/aruzicka555/Extension-PnET-Succession.git 8cd34cd223e5cfbf9b63e2582ff863e2c2d37d07 /deploy \
+  && ./downloadSpecificGitCommitAndFolder.sh https://github.com/LANDIS-II-Foundation/Extension-PnET-Succession 5e7e5f95d6a1f47b5a8b62cd92c4598aa0b85d78 /deploy \
   && cp -r $LANDIS_FOLDER/Extension-PnET-Succession/deploy/Defaults $LANDIS_FOLDER/build/extensions \
   # We also have to register the extension properly
-  && cd $LANDIS_FOLDER/Extension-PnET-Succession && wget https://raw.githubusercontent.com/aruzicka555/Extension-PnET-Succession/8cd34cd223e5cfbf9b63e2582ff863e2c2d37d07/deploy/installer/PnET-Succession.txt \
+  && cd $LANDIS_FOLDER/Extension-PnET-Succession && wget https://raw.githubusercontent.com/LANDIS-II-Foundation/Extension-PnET-Succession/refs/heads/master/deploy/installer/PnET-Succession.txt \
   && dotnet $LANDIS_EXTENSIONS_TOOL add "PnET-Succession.txt" \
   && cd $LANDIS_FOLDER/ && rm -r Extension-PnET-Succession
 
