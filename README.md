@@ -4,6 +4,9 @@
 
 Resources to create and use a Docker Image and an Apptainer containing the [LANDIS-II model](https://www.landis-ii.org/) and its extensions, for use on almost any environment, including supercomputing clusters.
 
+> [!WARNING]
+> **A significant bug has been discovered in the "Universal cohort library" that is used in most LANDIS-II extensions under the version 8 of LANDIS-II. See [this issue](https://github.com/LANDIS-II-Foundation/Library-Universal-Cohort/issues/4) for more information. An effort is currently ongoing by the community of devellopers to update all affected LANDIS-II extensions in LANDIS-II v8. We will update the LANDIS-II v8 docker images on this repository as soon as most extensions will have been updated, and this message will be edited when this is done. In the meanwhile, you can keep using LANDIS-II v8 while keeping in mind that some biomass removal done by some extensions might be bugged; or you can use the LANDIS-II v7 images which do not have this problem.**
+
 ## 🐋 What is Docker ?
 
 Docker is an open-source platform designed for creating, deploying, and managing applications using what are called "containers".
