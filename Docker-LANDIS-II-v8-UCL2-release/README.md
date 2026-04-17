@@ -28,7 +28,7 @@ This image closely follows the original `Clean_Docker_LANDIS-II_8_AllExtensions`
 cd ~/Tool-Docker-Apptainer
 
 docker build . \
-  -f Docker-LANDIS-II-v8-UCLv2-release/Dockerfile \
+  -f Docker-LANDIS-II-v8-UCL2-release/Dockerfile \
   -t landis-ii-8-uclv2-release:release
 ```
 
@@ -38,7 +38,7 @@ docker build . \
 cd ~/Tool-Docker-Apptainer
 
 docker build . `
-  -f Docker-LANDIS-II-v8-UCLv2-release/Dockerfile `
+  -f Docker-LANDIS-II-v8-UCL2-release/Dockerfile `
   -t landis-ii-8-uclv2-release:release
 ```
 
