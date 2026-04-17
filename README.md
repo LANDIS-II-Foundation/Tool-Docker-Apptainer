@@ -70,6 +70,7 @@ These images provide a minimal LANDIS-II installation, including GDAL, plus a py
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
 | `landis-ii-v8-linux`   | `Clean_Docker_LANDIS-II_8_AllExtensions/`  | LANDIS-II v8 (Ubuntu 22.04); fixed versions of v8 extensions; **superseded by `landis-ii-v8-release`** |
 | `landis-ii-v8-release` | `Docker-LANDIS-II-v8-release/`             | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml) |
+| `landis-ii-v8-UCLv2-release` | `Docker-LANDIS-II-v8-UCLv2-release/` | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-UCLv2-release.yaml) |
 
 ### R/Rstudio images
 
