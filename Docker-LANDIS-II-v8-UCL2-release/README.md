@@ -29,7 +29,7 @@ cd ~/Tool-Docker-Apptainer
 
 docker build . \
   -f Docker-LANDIS-II-v8-UCLv2-release/Dockerfile \
-  -t landis-ii-8-UCLv2-release:release
+  -t landis-ii-8-uclv2-release:release
 ```
 
 ### Windows (Powershell)
@@ -39,7 +39,7 @@ cd ~/Tool-Docker-Apptainer
 
 docker build . `
   -f Docker-LANDIS-II-v8-UCLv2-release/Dockerfile `
-  -t landis-ii-8-UCLv2-release:release
+  -t landis-ii-8-uclv2-release:release
 ```
 
 ## Run a container
