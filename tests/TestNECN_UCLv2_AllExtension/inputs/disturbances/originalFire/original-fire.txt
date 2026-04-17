@@ -1,0 +1,67 @@
+LandisData  "Original Fire"
+
+Timestep  5
+
+Species_CSV_File ./inputs/disturbances/originalFire/OriginalFire_Spp_Table.csv
+
+>> ------------------------------------
+>> FIRE DISTURBANCE REGIME PARAMETERS
+>> ------------------------------------
+
+>> Fire        Map	___ Event Size ___   Ignition  
+>> region      Code	 Mean  Min    Max    Prob.     k
+>> ---------   ------	----   ----   ----   --------  --------
+    eco1       1	 100    4     400    0.001    100
+
+
+>>----------------------
+>> INPUT MAP
+>>----------------------
+
+InitialFireRegionsMap	./inputs/core/ecoregion.img
+
+
+
+>> ---------------------------
+>> FIRE SEVERITY PARAMETERS
+>> ---------------------------
+
+  DynamicFireRegionTable		<< Optional (uncomment to select) 
+>> Year		FileName
+>> ----		--------
+   20		./inputs/core/ecoregion.img		<< Optional (uncomment to select)
+
+
+  FuelCurveTable
+>>             Severities (in increasing order)
+>> Ecoregion   S1   S2   S3   S4   S5
+>> ------------------------------------
+    eco1       10   20   50   70   120
+
+
+
+  WindCurveTable
+>>             Severities (in decreasing order)
+>> Ecoregion   S5   S4   S3   S2   S1
+>> ------------------------------------
+    eco1       -1   -1    1   10   20
+
+
+
+  FireDamageTable
+>> Cohort Age       FireSeverity - 
+>> % of longevity   FireTolerance
+>> --------------   --------------
+     20%               -2
+     50%               -1
+     85%                0
+    100%                1
+
+
+
+>> ---------------
+>> OUTPUTS
+>> -------------
+MapNames	output/originalFire/original-fire-severity-{timestep}.tif
+LogFile		output/originalFire/original-fire-log.csv
+SummaryLogFile 	output/originalFire/original-fire-summary-log.csv

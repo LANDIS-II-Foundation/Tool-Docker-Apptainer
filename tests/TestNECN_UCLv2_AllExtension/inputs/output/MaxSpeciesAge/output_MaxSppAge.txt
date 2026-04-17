@@ -1,0 +1,9 @@
+LandisData  "Output Max Species Age"
+
+Timestep   	5
+
+MapNames   	output/MaxSpeciesAge/{species}-{timestep}.tif
+
+Species		abiebals
+
+	   

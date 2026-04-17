@@ -1,0 +1,41 @@
+LandisData  	HabitatSuitabilityFile
+HabitatName	species1
+
+SuitabilityType  AgeClass_ForestType	<< 'AgeClass_ForestType'
+					<< 'AgeClass_TimeSinceFire'
+					<< 'ForestType_TimeSinceFire'
+ReclassCoefficients
+>>	Species		ReclassCoeff
+>>	--------	------------
+	pinubank	1.0
+	pinuresi	1.0
+	pinustro	1.0
+	acersacc	1.0
+	betualle	1.0
+	abiebals	0.5
+	acerrubr	0.5
+	fraxamer	0.5
+	piceglau	1.0
+	poputrem	0.5
+	betupapy	0.5
+
+
+ForestTypeTable
+>>	Forest Type		Species
+>> 	-----------		-------
+	Pine			pinubank pinuresi pinustro
+	MapleHardwood		acersacc betualle abiebals acerrubr fraxamer -pinubank
+	SpruceFir		piceglau  abiebals
+	Other			poputrem betupapy
+
+
+SuitabilityTable
+<< ForestType	Maximum Age Values
+<< ----------	-------------------
+		10	30	999
+<<		Suitability Values
+<<		-------------------
+Pine		0	1	2
+MapleHardwood	0	0	1
+SpruceFir	0	0	1
+Other		0	0	0

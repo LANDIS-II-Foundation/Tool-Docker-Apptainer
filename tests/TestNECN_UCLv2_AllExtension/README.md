@@ -1,0 +1,1 @@
+This is a simple test scenario adapted from the PNET scenario created by Clement Hardy to test if the Docker image for LANDIS-II v8 resulting from the corresponding Dockerfile can run properly. Instead of PNET, it uses NECN as the succession library.
