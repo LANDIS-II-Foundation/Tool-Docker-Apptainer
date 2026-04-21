@@ -1,0 +1,76 @@
+LandisData  "Hurricane"
+
+Timestep  1
+
+InputUnitsEnglish N
+
+HurricaneRandomNumberSeed 1974
+
+
+>> Likelihood a given year will have this number of storms
+StormOccurrenceProbabilities
+ >> Storms
+ >>  Per
+ >>  Year       Probability  << Sum must = 1.0
+0	0.05
+1	0.15
+2	0.22
+3	0.22
+4	0.17
+5	0.1
+6	0.05
+7	0.03
+8	0.01
+
+
+
+>> Max Wind Speed at Landfall is on a log normal distribution
+LowBoundLandfallWindSpeed	51 << kmh
+ModeLandfallWindSpeed	165 << kmh  (Trevor = 65)
+HighBoundLandfallWindSpeed  161 << kmh  Values greater are truncated.
+
+CoastalSlope -0.903 << relative to the larger landscape
+
+MeanStormIntersectionX 417.618
+MeanStormIntersectionY 105.420
+
+LandfallSigma 1 << the variance of landfalls, assuming a mean location as indicated above
+
+StormDirectionMu 204.4397 << average direction
+StormDirectionSigma 71.06188 << variation
+
+MinimumWindSpeedforDamage	60 << units = kph; should match the third column in the WindSpeedVulnerabilities table
+
+ExposureMaps << table
+>> Column 1 = degree
+>> Column 2 = map name
+135	./inputs/disturbances/biomassHuricane/test_135_wind_fix.tif
+180	./inputs/disturbances/biomassHuricane/test_180_wind_fix.tif
+225	./inputs/disturbances/biomassHuricane/test_225_wind_fix.tif
+
+WindSpeedVulnerabilities
+>> Species		MaxAge			Mortality Probabilities
+>> WARNING : Values here are an adaptation of the test scenario for v8 on https://github.com/LANDIS-II-Foundation/Extension-Biomass-Hurricane/tree/master/testing/Core8-Hurricane3.0
+>> The species have been changed randomly to match the species used in this larger scenario with many extensions
+>> These parameters are in no way realistic and should not be used outside of testing purposes !
+   abiebals              700     60:0.05   75:0.18    110:0.75  140:1.0
+   acerrubr           450     60:0.05   75:0.18    110:0.75  140:1.0
+   acersacc 	    700     60:0.05   75:0.18    110:0.75  140:1.0
+   betualle            250     60:0.05   75:0.18    110:0.75  140:1.0
+   betupapy          800     60:0.05   75:0.18    110:0.75  140:1.0
+   fraxamer                 100     60:0.05   75:0.18    110:0.75  140:1.0
+   piceglau             200     60:0.05   75:0.18    110:0.75  140:1.0
+   pinubank             250     60:0.05   75:0.18    110:0.75  140:1.0
+   pinuresi               140     60:0.05   75:0.18    110:0.75  140:1.0
+   pinustro         500     60:0.05   75:0.18    110:0.75  140:1.0
+   poputrem               800     60:0.05   75:0.18    110:0.75  140:1.0
+   querelli              250     60:0.05   75:0.18    110:0.75  140:1.0
+   querrubr              60     60:0.05   75:0.18    110:0.75  140:1.0
+   thujocci         400     60:0.05   75:0.18    110:0.75  140:1.0
+   tiliamer          500     60:0.05   75:0.18    110:0.75  140:1.0
+
+MapNames  output/biomassHurricane/max-windspeed-{timestep}-{stormNumber}.tif
+LogFile   output/biomassHurricane/hurricane-log.csv
+
+WindReductionTableCSV	./inputs/disturbances/biomassHuricane/EvennessWindReductions.csv
+
