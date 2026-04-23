@@ -58,6 +58,14 @@
   org: LANDIS-II-Foundation
   commit: 6637d7de11fc0d6e7bffca2cb4034db5f3c700d0
 
+- repo: LANDIS-II-Forest-Roads-Simulation-extension
+  org: Klemet
+  commit: 58f5a260195192c20d521e47b9e049f6c0e94022
+
+- repo: LANDIS-II-Magic-Harvest
+  org: Klemet
+  commit: 8956c53c3c9e32fb2069c9ff9ad23b9dffb791fe
+
 ## TODO: use LANDIS-II-Foundation
 - repo: Extension-Biomass-Hurricane
   org: jameslamping
