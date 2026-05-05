@@ -56,13 +56,12 @@
 
 - repo: Extension-Biomass-Harvest
   org: LANDIS-II-Foundation
-  commit: 6637d7de11fc0d6e7bffca2cb4034db5f3c700d0
+  commit: 6303c42009a4ded7f40b2e82874af428dc4837fe
 
 
-## TODO: use LANDIS-II-Foundation
 - repo: Extension-Biomass-Hurricane
-  org: jameslamping
-  commit: 6e15fba455cfce5e83274d22dbf4aeba0f46d8b2
+  org: LANDIS-II-Foundation
+  commit: bef44491f37ffd6950d26bf9d1425db509e974fe
 
 # - repo: Extension-Dynamic-Biomass-Fuels
 #   org: LANDIS-II-Foundation
@@ -72,9 +71,9 @@
 #   org: LANDIS-II-Foundation
 #   commit: 6c62e31405e64a486d1cee9b21672e1a9ff34e43
 
-# - repo: Extension-Land-Use-Plus
-#   org: LANDIS-II-Foundation
-#   commit: 48bd05c98e7d041a36fcc5a3f6e9c310d68520f0
+- repo: Extension-Land-Use-Plus
+  org: LANDIS-II-Foundation
+  commit: cea58ef6b94a4261dcc6f1b6074e7e130d0198a9
 
 # - repo: Extension-LinearWind
 #   org: LANDIS-II-Foundation
