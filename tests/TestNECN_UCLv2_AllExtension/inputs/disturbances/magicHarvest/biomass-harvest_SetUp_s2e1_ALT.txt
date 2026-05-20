@@ -1,0 +1,55 @@
+LandisData  "Biomass Harvest"
+
+
+>>----------------
+>> REQUIRED INPUTS
+>>-----------------
+Timestep		5
+
+ManagementAreas 	./inputs/disturbances/magicHarvest/harvest_Management_zones.tif
+
+Stands     		./inputs/disturbances/magicHarvest/harvest_Stands.tif
+
+
+
+>> -------------------------
+>> HARVESTING PRESCRIPTIONS
+>> -------------------------
+
+>>---- PRESCRIPTION_1 ---------------------------------------
+Prescription MaxAgeClearcut
+    StandRanking 	MaxCohortAge
+    SiteSelection 	Complete
+    CohortsRemoved 	ClearCut
+	
+	MultipleRepeat 20
+
+>>---- PRESCRIPTION_2 ---------------------------------------
+Prescription AbiesRemoval
+    StandRanking 	MaxCohortAge
+    SiteSelection 	Complete
+    CohortsRemoved 	SpeciesList
+	
+	abiebals All
+
+
+
+>> ----------------------------------
+>> HARVESTING IMPLEMENTATION 
+>> ---------------------------------
+
+    HarvestImplementations
+>>	Mgmt Area	Prescription		Harvest Area	BeginTime	EndTime
+>> 	---------   	------------   		------------   	---------- 	--------
+	1		AbiesRemoval		5%		
+
+
+
+>> ------------
+>> OUTPUTS
+>> ----------
+
+PrescriptionMaps    output/magicHarvest/biomass-harvest-prescripts-{timestep}.tif
+BiomassMaps         output/magicHarvest/biomass-removed-{timestep}.tif
+EventLog            output/magicHarvest/biomass-harvest-event-log.csv
+SummaryLog	    output/magicHarvest/biomass-harvest-summary-log.csv

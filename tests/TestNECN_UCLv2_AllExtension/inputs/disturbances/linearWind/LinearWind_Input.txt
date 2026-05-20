@@ -1,0 +1,64 @@
+LandisData "Linear Wind"			
+
+Timestep 10	
+
+
+NumEventsMean		8.4	<<Mean number of events/40,000 km2/year  Source: (derechos) Hjelmfelt MR, p. 74 in Johnson EA and Miyanishi K, Pland disturbance ecology, Academic Press (2007); (tornadoes) http://www.wunderground.com/resources/education/tornadoFAQ.asp?MR=1 (MAP)
+NumEventsStDev		0.08	<<Standard deviation number of events/40,000 km2/year
+
+>> Tornadoes <<
+TornadoLengthLambda	25.75	<<Lambda length of events (km): Calibrated Mean = 25.21, StDev = 1.20; Target Mean = 25.3, StDev = 1.2; Source: CJ Peterson in Greenburg, CH, Collins BS.  Natural Disturbance and Historice Rane of Variability.  Springer.
+TornadoLengthAlpha	26.5	<<Alpha length of events (km): Calibrated Mean = 25.21, StDev = 1.20
+TornadoWidth		0.420	<<Width of small events (km)  Source: CJ Peterson in Greenburg, CH, Collins BS.  Natural Disturbance and Historice Rane of Variability.  Springer. 
+TornadoIntensityTable
+>> Percent  Intensity
+>> -------  ---------
+     0		<<0.2
+    5		<<0.4
+    20		<<0.6
+    50          <<0.8
+    25          <<1.0 
+TornadoProp		0.76	<<Proportion of events that are tornadoes
+
+>> Derechos <<
+DerechoLengthLambda	178.0	<<Lambda length of events (km): Calibrated Mean = 160.52, StDev = 49.71; Target Mean = 160, StDev = 50; Source: http://www.spc.noaa.gov/misc/AbtDerechos/derechofacts.htm
+DerechoLengthAlpha	3.6	<<Alpha length of events (km): Calibrated Mean = 160.52, StDev = 49.71  
+DerechoWidth		40.000	<<Width of large events (km)  Source: http://www.spc.noaa.gov/misc/AbtDerechos/derechofacts.htm 
+DerechoIntensityTable
+>> Percent  Intensity
+>> -------  ---------
+     5		<<0.2
+    15		<<0.4
+    50		<<0.6
+    25          <<0.8
+     5          <<1.0
+
+PropIntensityVar 	0.65	<<Defines the proportion of the event that has an intensity less than the intensity class defined solely by distance from the axis.  Each cell in the event will have a probability equal to this parameter value of having its intensity reduced by 0.20 (intensity ranges from 0 to 1).  A value of 0 for this parameter will result in intensities that exactly match the ratio of actual distance to the axis over the event width.  Any value greater than 0 for this parameter will introduce some heterogeneity in the intensity values.
+
+
+WindDirectionTable
+>> Percent  Dir Source:http://www.tornadohistoryproject.com/tornado/Minnesota/map and subjective impressions of derecho paths
+>> -------  -----
+     0	   << N-S    
+     30	   << NE-SW   
+     60	   << E-W   
+     10    << SE-NW 
+
+
+EcoregionModifiers  <<  Modify lowlands
+eco1		-0.5
+
+
+WindSeverities				
+>>		Cohort Age		Mortality
+>>Severity 	% of longevity		Threshold	
+>>-----------------------------------------------------				
+5		0% to 20%		0.80
+4		20% to 40%		0.75
+3		40% to 60%		0.70
+2		60% to 80%		0.50
+1		80% to 100%		0.40
+
+IntensityMapNames  output/linearWind/intensity-{timestep}.tif
+SeverityMapNames output/linearWind/severity-{timestep}.tif
+LogFile output/linearWind/linearwind-event-log.csv

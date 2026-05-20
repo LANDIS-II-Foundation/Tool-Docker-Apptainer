@@ -11,7 +11,7 @@
 ## Succession Extensions
 - repo: Extension-Biomass-Succession
   org: LANDIS-II-Foundation
-  commit: 58ad3673e02abe82f437a6b68c44220c51351091
+  commit: 7802869231c7109ddc85ac7c9f92113bc5d6353f
 
 # - repo: Extension-DGS-Succession
 #   org: LANDIS-II-Foundation
@@ -23,11 +23,11 @@
 
 - repo: Extension-NECN-Succession
   org: LANDIS-II-Foundation
-  commit: 2b3aa3e5cd6ba011e704423f1f0a397905615ecb
+  commit: b4849400f55a83e6c8556ab36b3c763546fbcb33
 
 - repo: Extension-PnET-Succession
-  org: aruzicka555
-  commit: 8cd34cd223e5cfbf9b63e2582ff863e2c2d37d07 ## Austen's master branch
+  org: LANDIS-II-Foundation
+  commit: 5e7e5f95d6a1f47b5a8b62cd92c4598aa0b85d78
 
 ## Disturbance and Other Extensions
 - repo: Extension-Base-BDA
@@ -68,7 +68,7 @@
 
 - repo: Extension-Social-Climate-Fire
   org: LANDIS-II-Foundation
-  commit: a79e7421be7bedcfc15db0be35c92e79bea009ad
+  commit: 0694421dd02d4335202cca9b4f74aa023a24e520
 
 - repo: LANDIS-II-Forest-Roads-Simulation-extension
   org: Klemet

@@ -1,0 +1,40 @@
+LandisData  "Output Cohort Statistics"
+
+
+Timestep   10
+
+
+>>--------------------------------
+>> OUPUT STATISTICS (Descriptive)
+>>--------------------------------
+
+>> ---- STAT1 ------------------------------------------------
+
+SpeciesAgeStats
+MapNames   output/cohortStatistics/ageStats/{species}-{statistic}-{timestep}.tif
+
+MIN 		thujocci  abiebals		 << minimum age for each species
+MAX 		thujocci  abiebals tiliamer	<< maximum age for each species
+MED		thujocci			<< median age for each species
+SD		thujocci			<< standard deviation age for each species
+AVG		thujocci			<< average age for each species
+
+>> ---- STAT2 -----------------------------------------------------
+
+SiteAgeStats
+MapNames   output/cohortStatistics/ageStatsALL/AGE-{statistic}-{timestep}.tif
+
+MIN 			<< minimum age across all species on site
+MAX			<< maximum age across all species on site
+MED			<< median age across all species on site
+AVG			<< average age across all species on site
+RICH   			<< number of age classes across all species on site
+EVEN   			<< evenness 
+COUNT   		<< count of cohorts
+
+>> ---- STAT3 ----------------------------------------------------------
+
+SiteSpeciesStats
+MapNames   output/cohortStatistics/spp-counts/SPP-{statistic}-{timestep}.tif
+
+RICH   			<<count of species

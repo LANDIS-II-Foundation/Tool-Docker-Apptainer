@@ -4,6 +4,9 @@
 
 Resources to create and use a Docker Image and an Apptainer containing the [LANDIS-II model](https://www.landis-ii.org/) and its extensions, for use on almost any environment, including supercomputing clusters.
 
+> [!WARNING]
+> **A significant bug has been discovered in the "Universal cohort library" that is used in most LANDIS-II extensions under the version 8 of LANDIS-II. See [this issue](https://github.com/LANDIS-II-Foundation/Library-Universal-Cohort/issues/4) for more information. An effort is currently ongoing by the community of devellopers to update all affected LANDIS-II extensions in LANDIS-II v8. We will update the LANDIS-II v8 docker images on this repository as soon as most extensions will have been updated, and this message will be edited when this is done. In the meanwhile, you can keep using LANDIS-II v8 while keeping in mind that some biomass removal done by some extensions might be bugged; or you can use the LANDIS-II v7 images which do not have this problem.**
+
 ## 🐋 What is Docker ?
 
 Docker is an open-source platform designed for creating, deploying, and managing applications using what are called "containers".
@@ -67,6 +70,7 @@ These images provide a minimal LANDIS-II installation, including GDAL, plus a py
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
 | `landis-ii-v8-linux`   | `Clean_Docker_LANDIS-II_8_AllExtensions/`  | LANDIS-II v8 (Ubuntu 22.04); fixed versions of v8 extensions; **superseded by `landis-ii-v8-release`** |
 | `landis-ii-v8-release` | `Docker-LANDIS-II-v8-release/`             | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml) |
+| `landis-ii-v8-uclv2-release` | `Docker-LANDIS-II-v8-UCL2-release/` | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-UCLv2-release.yaml) |
 
 ### R/Rstudio images
 
