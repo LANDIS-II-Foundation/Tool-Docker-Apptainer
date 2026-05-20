@@ -1,0 +1,20 @@
+LandisData	Species									
+										
+>>                      Sexual  Seed Disperal Dist  Vegetative   Sprout Age  Post-Fire
+>> Name      Longevity  Maturity  Effective  Maximum  Reprod Prob  Min   Max   Regen
+>> ----      ---------  --------  ---------  -------  -----------  ----------  --------
+abiebals	200	25	60	160	0.0	0	0	none
+acerrubr	150	4	100	200	0.5	0	100	resprout
+acersacc	400	22	50	330	0.3	0	100	none
+betualle	300	40	45	400	0.1	0	200	none
+betupapy	200	15	60	5000	0.8	0	110	resprout
+fraxamer	300	20	70	140	0.3	0	100	resprout
+piceglau	300	30	27	300	0.0	0	0	none
+pinubank	250	5	16	32	0.0	0	0	serotiny
+pinuresi	350	15	12	300	0.0	0	0	none
+pinustro	450	20	60	210	0.0	0	0	none
+poputrem	150	10	500	5000	0.9	1	60	resprout
+querelli	170	20	30	1000	0.5	20	150	resprout
+querrubr	 250	25	30	3000	0.5	20	200	resprout
+thujocci	800	30	45	60	0.8	5	75	none
+tiliamer	300	10	20	80	0.7	0	110	resprout

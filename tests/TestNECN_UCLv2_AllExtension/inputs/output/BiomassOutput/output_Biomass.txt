@@ -1,0 +1,23 @@
+LandisData  "Output Biomass"
+
+Timestep  5
+
+MakeTable yes  << Optional parameter
+
+Species    abiebals
+	   acerrubr
+	   acersacc
+	   betualle
+	   betupapy
+	   fraxamer
+	   pinustro
+	   poputrem
+	   querrubr
+	   thujocci
+	   tiliamer
+
+MapNames  output/biomassOutput/biomass-{species}-{timestep}.tif
+
+DeadPools both
+	  
+MapNames  output/biomassOutput/biomass-{pool}-{timestep}.tif

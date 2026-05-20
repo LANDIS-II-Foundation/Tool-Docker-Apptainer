@@ -1,0 +1,39 @@
+LandisData  	HabitatSuitabilityFile
+WildlifeName	KIWA
+
+SuitabilityType  AgeClass_ForestType	<< 'AgeClass_ForestType'
+					<< 'AgeClass_TimeSinceFire'
+					<< 'ForestType_TimeSinceFire'
+ReclassCoefficients
+>>	Species		ReclassCoeff
+>>	--------	------------
+	abiebals	1.0
+	acerrubr	1.0
+	acersacc	1.0
+	betualle	1.0
+	betupapy	1.0
+	fraxamer	1.0
+	piceglau	1.0
+	pinubank	1.0
+	pinuresi	1.0
+	pinustro	1.0
+	poputrem	1.0
+	querelli	1.0
+	querrubr	1.0
+	thujocci	1.0
+	tiliamer	1.0
+
+ForestTypeTable
+>>	Forest Type		Species
+>> 	-----------		-------
+	Other			abiebals acerrubr acersacc betualle betupapy fraxamer poputrem querelli querrubr tiliamer piceglau pinustro thujocci 
+	JackPine		pinubank
+
+SuitabilityTable
+<< ForestType	Maximum Age Values
+<< ----------	-------------------
+		10	20	999
+<<		Suitability Values
+<<		-------------------
+Other		0	0	0
+JackPine	1	2	0
