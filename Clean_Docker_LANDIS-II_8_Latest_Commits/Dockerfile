@@ -37,6 +37,14 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN pip install --no-cache-dir \
+    numpy \
+    pandas \
+    rasterio \
+    geopandas \
+    scipy \ 
+    numpy
+
 # Set the working directory
 WORKDIR /opt
 
@@ -208,8 +216,8 @@ RUN sed -i '/<\/Project>/i \
     <Reference Include="Landis.Extension.Output.BiomassCommunity-v3.dll">\n\
         <HintPath>../../build/extensions/Landis.Extension.Output.BiomassCommunity-v3.dll</HintPath>\n\
     </Reference>\n\
-    <Reference Include="Landis.Library.UniversalCohorts-v1.dll">\n\
-        <HintPath>../../build/extensions/Landis.Library.UniversalCohorts-v1.dll</HintPath>\n\
+    <Reference Include="Landis.Library.UniversalCohorts-v2.dll">\n\
+        <HintPath>../../build/extensions/Landis.Library.UniversalCohorts-v2.dll</HintPath>\n\
     </Reference>\n\
     <Reference Include="Landis.Extension.Output.BiomassReclass-v4.dll">\n\
         <HintPath>../../build/extensions/Landis.Extension.Output.BiomassReclass-v4.dll</HintPath>\n\
@@ -234,9 +242,6 @@ RUN sed -i '/<\/Project>/i \
     </Reference>\n\
     <Reference Include="log4net.dll">\n\
         <HintPath>../../build/extensions/log4net.dll</HintPath>\n\
-    </Reference>\n\
-    <Reference Include="Landis.Library.UniversalCohorts-v1.dll">\n\
-        <HintPath>../../build/extensions/Landis.Library.UniversalCohorts-v1.dll</HintPath>\n\
     </Reference>\n\
 </ItemGroup>' /opt/Core-Model-v8-LINUX/Tool-Console/src/Console.csproj
 
