@@ -105,9 +105,9 @@ RUN git clone $LANDIS_GITHUB/Support-Library-Dlls-v8.git \
 ##  - it cleans up afterwards, removing the extension source files to save space in the image;
 
 COPY extension_files $LANDIS_DIR/extension_files
-COPY extensions-v8-release.yaml $LANDIS_DIR/extensions-v8-release.yaml
+COPY extensions-v8-UCL2-release.yaml $LANDIS_DIR/extensions-v8-UCL2-release.yaml
 
-RUN scripts/install_extensions_v8.sh extensions-v8-release.yaml $LANDIS_DIR
+RUN scripts/install_extensions_v8.sh extensions-v8-UCL2-release.yaml $LANDIS_DIR
 
 ## DEBUG: extension install and dependencies
 # RUN echo "$(cat $EXT_LOG_FILE)" 1>&2 && exit 1
@@ -118,9 +118,9 @@ RUN scripts/install_extensions_v8.sh extensions-v8-release.yaml $LANDIS_DIR
 ##  - the script parses `libraries-v8-release.yaml` to checkout specific commits;
 ##  - it cleans up afterwards, removing the library source files to save space in the image;
 
-COPY libraries-v8-UCL2-release.yaml $LANDIS_DIR/libraries-v8-UCL2-release.yaml
+COPY libraries-v8-release.yaml $LANDIS_DIR/libraries-v8-release.yaml
 
-RUN scripts/install_libraries_v8.sh libraries-v8-UCL2-release.yaml $LANDIS_DIR
+RUN scripts/install_libraries_v8.sh libraries-v8-release.yaml $LANDIS_DIR
 
 ## DEBUG: library install and dependencies
 # RUN echo "$(cat $LIB_LOG_FILE)" 1>&2 && exit 1
