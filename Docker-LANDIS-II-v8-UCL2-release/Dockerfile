@@ -36,11 +36,14 @@ RUN apt-get update && apt-get upgrade -y \
 
 
 RUN pip install --no-cache-dir \
+    --ignore-installed \
+    --break-system-packages \
+    numpy \
     pandas \
     rasterio \
     geopandas \
-    scipy \
-    --break-system-packages
+    scipy
+
 
 ## install yq (used to parse yaml files) from source
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq \
