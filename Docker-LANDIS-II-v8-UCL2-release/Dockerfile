@@ -36,7 +36,6 @@ RUN apt-get update && apt-get upgrade -y \
 
 
 RUN pip install --no-cache-dir \
-    numpy \
     pandas \
     rasterio \
     geopandas \
