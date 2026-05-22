@@ -34,6 +34,15 @@ RUN apt-get update && apt-get upgrade -y \
     xmlstarlet \
   && apt-get clean -y && rm -rf /var/lib/apt/lists/* ## clean up to save space
 
+
+RUN pip install --no-cache-dir \
+    numpy \
+    pandas \
+    rasterio \
+    geopandas \
+    scipy \ 
+    numpy
+
 ## install yq (used to parse yaml files) from source
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq \
   && chmod +x /usr/local/bin/yq
