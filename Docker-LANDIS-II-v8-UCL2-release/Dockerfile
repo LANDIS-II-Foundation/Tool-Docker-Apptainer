@@ -91,14 +91,14 @@ RUN git clone $LANDIS_GITHUB/Support-Library-Dlls-v8.git \
 ## get, build, and register all available extensions
 ##
 ##  - necessary files are downloaded and built using `scripts/install_extensions_v8.sh`;
-##  - the script parses `extensions-v8-release.yaml` to checkout specific commits;
+##  - the script parses `extensions-v8-UCL2-release.yaml` to checkout specific commits;
 ##  - it uses sparse checkout of specific directories to avoid downloading the entire repo;
 ##  - it cleans up afterwards, removing the extension source files to save space in the image;
 
 COPY extension_files $LANDIS_DIR/extension_files
-COPY extensions-v8-release.yaml $LANDIS_DIR/extensions-v8-release.yaml
+COPY extensions-v8-UCL2-release.yaml $LANDIS_DIR/extensions-v8-UCL2-release.yaml
 
-RUN scripts/install_extensions_v8.sh extensions-v8-release.yaml $LANDIS_DIR
+RUN scripts/install_extensions_v8.sh extensions-v8-UCL2-release.yaml $LANDIS_DIR
 
 ## DEBUG: extension install and dependencies
 # RUN echo "$(cat $EXT_LOG_FILE)" 1>&2 && exit 1
@@ -138,6 +138,10 @@ RUN scripts/add_console_csproj_dlls.sh $LANDIS_DIR \
 COPY ./tests $TESTS_DIR
 
 WORKDIR $TESTS_DIR/TestNECN_UCLv2_AllExtension
+
+RUN dotnet $LANDIS_CONSOLE scenario.txt
+
+WORKDIR $TESTS_DIR/TestForCS_v8
 
 RUN dotnet $LANDIS_CONSOLE scenario.txt
 

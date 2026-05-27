@@ -141,6 +141,10 @@ WORKDIR $TESTS_DIR/TestPnET_AllExtension
 
 RUN dotnet $LANDIS_CONSOLE scenario.txt
 
+WORKDIR $TESTS_DIR/TestForCS_v8
+
+RUN dotnet $LANDIS_CONSOLE scenario.txt
+
 ################################################################
 ## Cleanup
 ################################################################

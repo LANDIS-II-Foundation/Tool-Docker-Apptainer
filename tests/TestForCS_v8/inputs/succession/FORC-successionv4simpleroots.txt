@@ -1,0 +1,135 @@
+LandisData  "ForC Succession"
+
+>> We don't recommend changing the timestep. We haven't tested it.
+Timestep  1
+
+SeedingAlgorithm  WardSeedDispersal
+
+ForCSClimateFile	"./inputs/succession/ForCSClimateInputv3.0 no CC.txt"
+
+InitialCommunities      "./inputs/succession/initial-communitiesv3.0generallyold.csv"
+InitialCommunitiesMap   "./inputs/succession/initial-communities.gis"
+
+DisturbanceMatrixFile	"./inputs/succession/ForCS_DM.txt"
+
+
+ForCSOutput
+>> Output interval
+>>  Biomass     DOM Pools   Flux	Summary
+>>  -------     ---------   ----	-------
+    1           1           1		1
+
+ForCSMapControl
+>>  BiomassC    SDOMC	 NBP	NEP	NPP    RH    ToFPS
+>>  --------    -----    ---	---	---    --    -----
+    1           1        1	1	1      1     1
+ 
+
+
+MapOutputInterval	1
+
+SpinUp
+>>On/Off      Biomass         Tolerance   Max
+>>Flag        Spin-up           %         Iterations
+>>            Flag  
+>>-------     ------          ---------   -------
+    1          1                1.0          20
+
+AvailableLightBiomass
+>>Shade									
+>>Class	Ecoregions							
+>>----------------------------------------------									
+	eco1	eco2
+1	30%	30%	
+2	35%	35%			
+3	55%	55%	
+4	80%	80%	
+5	100%	100%		
+
+
+LightEstablishmentTable
+>> Spp Shade	Probability
+>> Class	by Actual Shade
+>> ----------	--------------------	
+>>		0	1	2	3	4	5
+	1	1	0.0	0.0	0.0	0.0	0.0
+	2	0.5	1	0.0	0.0	0.0	0.0
+	3	0	0.5	1	0.5	0.0	0.0
+	4	0	0	0.5	1	0.0	0.0
+	5	0	0	0	0.5	1	0.5
+
+
+SpeciesParameters
+
+>> Species  Leaf   Mortal   Merchantable    Merch.      Merch.      Prop.	  Growth	Shade		Fire
+>>          Long   Shape                  Curve Shape Curve Shape Non-merch.	  Shape		Tolerance	Tolerance
+>>                  Param   Min Age         Param a     Param b     to FastAG     Param	
+>> -------  ----   ------      ------------    ----------- ----------- -------------------------------------------------
+   pinubank 3.0	    10	    	5 		0.7546	0.983		0.25	0.9		1		2
+   querelli 1.0	    10	    	5		0.7546	0.983		0.25 	0.9 		2		4
+
+DOMPools
+>>  ID      Name                        Prop to
+>>                                      Atm
+>>  ----    -------------------------   ---------
+    1       "Very Fast Aboveground"     0.815
+    2       "Very Fast Belowground"     0.83
+    3       "Fast Aboveground"          0.83
+    4       "Fast Belowground"          0.83
+    5       "Medium"                    0.83
+    6       "Slow Aboveground"          0.83
+    7       "Slow Belowground"          0.83
+    8       "Stem Snag"                 0.83
+    9       "Other Snag"                0.83
+    10      "Extra pool"                0.83
+
+EcoSppDOMParameters	"./inputs/succession/EcoSppDOMParameters.csv"
+
+ForCSProportions    
+>> Proportion of physical turnover transferred from a biomass pool to a specific DOM pool.
+>> Proportions are to be specified as a value between [0, 1].
+>>
+>> Biomass Fine Roots: The proportion of fine roots going to the above ground very fast pool (i.e. DOMPoolID = 1, "Very Fast Aboveground")
+>> where the remainder going to the below ground very fast pool (i.e. DOMPoolID = 2, "Very Fast Belowground").
+>>
+>> Biomass Coarse Roots: The proportion of coarse roots going to the above ground fast pool (i.e. DOMPoolID = 3, "Fast Aboveground")
+>> where the remainder going to the below ground fast pool (i.e. DOMPoolID = 4, "Fast Belowground").
+>>
+>> Biomass default values correspond to Table 3 in Kurz et al 2009 Ecol. Mod., where 100% of the foliage goes to the very fast above ground pool.
+>>
+>> DOM SlowAG (6) to SlowBG (7): Proportion of C transferred between these two pools.
+>>
+>> DOM StemSnag (8) to Medium (5): Proportion of C transferred between these two pools.
+>>
+>> DOM BranchSnag (9) to FastAG (3): Proportion of C transferred between these two pools.
+>>
+>> Default values correspond to Table 4 in Kurz et al 2009 Ecol. Mod.
+>> 
+>>  Biomass Biomass     DOM         DOM             DOM
+>>  Fine    Coarse      SlowAG to   StemSnag to     BranchSnag
+>>                      SlowBG      Medium          to FastAG
+>>  ------- -------     ---------   -----------     ----------
+    0.5     0.5         0.006       0.032           0.1
+
+
+ANPPTimeSeries	"./inputs/succession/ANPPTimeSeries.csv"
+
+MaxBiomassTimeSeries	"./inputs/succession/MaxBiomassTimeSeries.csv"
+
+EstablishProbabilities	"./inputs/succession/EstablishProbabilities.csv"
+
+
+RootDynamics
+>> Ecoregion	Species	  	MinB(g/m2)	Root:Shoot	PropFineRt	FRturnover	CRturnover
+	eco1	pinubank	0		0.399		0.18		0.6		0.02
+	eco1	querelli	0		0.403		0.18		1		0.02
+	eco2	pinubank	0		0.399		0.18		0.6		0.02
+	eco2	querelli	0		0.403		0.18		1		0.02
+
+
+SnagData
+>>Species   AgeAtDeath  TimeSinceDeath   DistType
+querelli        40           1             other
+pinubank        88           12            wind
+
+
