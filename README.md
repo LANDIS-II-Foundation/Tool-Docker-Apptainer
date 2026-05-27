@@ -48,9 +48,30 @@ Simply select an image that best suits your needs - you can use "as is" or simpl
 > However, we recommend that you familiarize yourself with the rest of the instructions to learn
 > how to edit and customize them for your own research purposes.
 
+### Which image should I use?
+
+**New to Docker? Start here:** download and use a pre-built image — no build step required (see [Get a pre-built image](#-get-a-pre-built-image) below).
+
+| Goal | Recommended image |
+| ---- | ----------------- |
+| Run LANDIS-II v8 simulations | `landis-ii-v8-release` |
+| Run LANDIS-II v8 with UCL v2 extensions | `landis-ii-v8-uclv2-release` |
+| Run LANDIS-II v8 with R and RStudio | `landis-ii-v8-rstudio` |
+| Run LANDIS-II v8 with R (no RStudio) | `landis-ii-v8-r` |
+| Run LANDIS-II v7 simulations | `landis-ii-v7-release` |
+| Use the latest (potentially unstable) extension commits | `landis-ii-v8-latest` |
+
+**v7 vs v8?**
+- Use **v8** unless you have a specific reason not to — it is the current recommended version.
+- Use **v7** if your scenario is not yet compatible with v8, or if you need extensions not available in v8 (e.g., BFOLDS Fire, DGS Succession, Biomass Browse). See the UCL bug warning at the top of this page for v8 caveats.
+
+**`landis-ii-v8-release` vs `landis-ii-v8-uclv2-release`?**
+- **`landis-ii-v8-release`** includes the full set of v8-compatible extensions. Some extensions have a known bug in the Universal Cohort Library (UCL) — see the warning at the top of this page.
+- **`landis-ii-v8-uclv2-release`** includes extensions updated for UCL v2, which fixes that bug. Some extensions are still pending update and are not yet included in this image.
+
 ### Generic images
 
-These images provide a minimal LANDIS-II installation, including GDAL, plus a python installation.
+These images provide a minimal LANDIS-II installation, including GDAL, plus a Python installation.
 
 > 💡 The `Clean_Docker_*` images hardcode the extensions and their specific commits directly in the Dockerfile,
 > whereas the others refer to a `.yaml` file (e.g., [`extensions-v8-release.yaml`](extensions-v8-release.yaml)) to define the versions used.
@@ -61,27 +82,27 @@ These images provide a minimal LANDIS-II installation, including GDAL, plus a py
 
 | Image name             | Subdirectory                               | Description                                         |
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
-| `landis-ii-v7-linux`   | `Clean_Docker_LANDIS-II_7_AllExtensions/`  | LANDIS-II v7 (Ubuntu 22.04); fixed versions of v7-compatible extensions; **superseded by `landis-ii-v7-release`** |
 | `landis-ii-v7-release` | `Docker-LANDIS-II-v7-release/`             | LANDIS-II v7 (Ubuntu 22.04); [fixed versions of v7-compatible extensions](extensions-v7-release.yaml) |
+| ~~`landis-ii-v7-linux`~~ | ~~`Clean_Docker_LANDIS-II_7_AllExtensions/`~~ | **Deprecated** — superseded by `landis-ii-v7-release` |
 
 **LANDIS-II v8 images**
 
 | Image name             | Subdirectory                               | Description                                         |
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
-| `landis-ii-v8-linux`   | `Clean_Docker_LANDIS-II_8_AllExtensions/`  | LANDIS-II v8 (Ubuntu 22.04); fixed versions of v8 extensions; **superseded by `landis-ii-v8-release`** |
 | `landis-ii-v8-release` | `Docker-LANDIS-II-v8-release/`             | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml) |
-| `landis-ii-v8-uclv2-release` | `Docker-LANDIS-II-v8-UCL2-release/` | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-UCLv2-release.yaml) |
+| `landis-ii-v8-uclv2-release` | `Docker-LANDIS-II-v8-UCL2-release/` | LANDIS-II v8 (Ubuntu 24.04); [extensions updated for UCL v2](extensions-v8-UCL2-release.yaml) |
+| ~~`landis-ii-v8-linux`~~ | ~~`Clean_Docker_LANDIS-II_8_AllExtensions/`~~ | **Deprecated** — superseded by `landis-ii-v8-release` |
 
-### R/Rstudio images
+### R/RStudio images
 
-These images are based on the generic images and add R and/or a running Rstudio Server instance.
+These images are based on the generic images and add R and/or a running RStudio Server instance.
 
 **LANDIS-II v8 images**
 
 | Image name             | Subdirectory                               | Description                                         |
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
-| `landis-ii-v8-r`       | `Docker-LANDIS-II-v8-release-R/`           | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml); |
-| `landis-ii-v8-rstudio` | `Docker-LANDIS-II-v8-release-Rstudio/`     | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml); Rstudio Server |
+| `landis-ii-v8-r`       | `Docker-LANDIS-II-v8-R/`                   | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml); R 4.6.0 |
+| `landis-ii-v8-rstudio` | `Docker-LANDIS-II-v8-Rstudio/`             | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml); R 4.6.0; RStudio Server |
 
 ### Other custom images
 
@@ -91,25 +112,32 @@ These images are based on the generic images and add R and/or a running Rstudio 
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
 | `landis-ii-v8-latest`  | `Clean_Docker_LANDIS-II_8_Latest_Commits/` | LANDIS-II v8 (Ubuntu 22.04); latest versions of v8 extensions; `miniconda` and [iRods](https://irods.org/) |
 
-### 📥 Get a prebuilt image
+### 📥 Get a pre-built image
 
-**Authenticate with the GitHub Container Registry:**
+Pre-built images are publicly available on the GitHub Container Registry and **do not require authentication** to download.
 
-1. Setup a personal access token following [these instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic);
+```shell
+## replace <imagename> with one from the tables above (e.g., landis-ii-v8-release)
+docker pull ghcr.io/landis-ii-foundation/<imagename>:main
+```
 
-2. Login with Docker:
+> 💡 You can also skip the `docker pull` step entirely: if you use an image name in a `docker run` command and the image is not already on your computer, Docker will download it automatically.
+
+<details>
+<summary>Authentication (optional — only needed for private images)</summary>
+
+If you need to access a private image, you must authenticate with GitHub first.
+
+1. Set up a personal access token following [these instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic);
+
+2. Log in with Docker:
 
     ```shell
     export GHCR_PAT=YOUR_TOKEN
     echo $GHCR_PAT | docker login ghcr.io -u USERNAME --password-stdin
     ```
 
-**Download the image:**
-
-```shell
-## replace <imagename> with one from above
-docker pull ghcr.io/landis-ii-foundation/<imagename>:main
-```
+</details>
 
 ### 📦 Building the docker image containing LANDIS-II
 
@@ -154,7 +182,7 @@ docker pull ghcr.io/landis-ii-foundation/<imagename>:main
 
 
 > [!WARNING]
-> You may get the occaisional error during the build that are due to internet connection issues.
+> You may get the occasional error during the build that are due to internet connection issues.
 > For example, when the build is downloading files from GitHub it may error with messages similar to:
 > 
 > ```shell
@@ -168,7 +196,7 @@ docker pull ghcr.io/landis-ii-foundation/<imagename>:main
 > NOTE: Using a VPN may create additional issues with some commands.
 > If you encounter errors with a VPN enabled, you can try disabling your VPN and retrying the build.
 
-### 📝 (Optional) Customizing the Docker image image with R packages, Python packages, or anything else
+### 📝 (Optional) Customizing the Docker image with R packages, Python packages, or anything else
 
 The Docker images we have created contain the minimal set of the components necessary to run
 LANDIS-II in the container, and cover several important use cases (but not all!).
@@ -297,7 +325,7 @@ dotnet $LANDIS_CONSOLE scenario.txt
 - `dotnet` is the Linux program that allows us to run LANDIS-II on Linux, since it's coded in `C#` (a programming language made by Microsoft);
 - `$LANDIS_CONSOLE` is an environment variable that contains the location of the LANDIS-II program
   in the container (in `/bin/LANDIS_Linux/build/Release/Landis.Console.dll`);
-- `scenario.txt` is the name of your scenario fiMY_LANDIS_CONTAINER_NAMEle;
+- `scenario.txt` is the name of your scenario file;
 
 As such, if you want to run LANDIS-II through an interactive container :
 
