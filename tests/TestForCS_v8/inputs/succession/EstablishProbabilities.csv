@@ -1,0 +1,9 @@
+Year,Ecoregion,Species,Probability
+0,eco1,pinubank,0.25
+0,eco1,querelli,0.25
+0,eco2,pinubank,0.25
+0,eco2,querelli,0.25
+5,eco1,pinubank,0.25
+5,eco1,querelli,0.25
+5,eco2,pinubank,0.25
+5,eco2,querelli,0.25

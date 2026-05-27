@@ -1,5 +1,9 @@
 # LANDIS-II-v8-R
 
+
+This image closely follows the `Docker-LANDIS-II-release` image but uses `rocker/r-ver:4.6.0` as the base image,
+and adds geospatial libraries.
+=======
 LANDIS-II v8 with R 4.6.0, built on [`rocker/r-ver:4.6.0`](https://rocker-project.org/images/versioned/r-ver.html). Includes LANDIS-II, geospatial libraries, and a full R environment — but no RStudio Server. For an interactive RStudio workflow, use [`landis-ii-v8-rstudio`](../Docker-LANDIS-II-v8-Rstudio/) instead.
 
 **For users:** pull the pre-built image (no build step required).
@@ -32,6 +36,7 @@ docker run -it --rm `
 ```
 
 **See also:** <https://rocker-project.org/images/versioned/r-ver.html#how-to-use>
+
 
 ## Build the image
 

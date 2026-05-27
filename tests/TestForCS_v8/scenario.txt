@@ -1,0 +1,29 @@
+LandisData  Scenario
+
+Duration  10
+
+Species   ./inputs/core/species.txt
+
+Ecoregions      ./inputs/core/ecoregions.txt
+EcoregionsMap   ./inputs/core/ecoregions.gis
+
+CellLength  100 << meters, so cell area = 1 ha
+
+
+>> Succession Extension     Initialization File
+>> --------------------     -------------------
+      "ForC Succession"        ./inputs/succession/FORC-successionv4simpleroots.txt
+
+
+>> Disturbance Extensions   Initialization File
+>> ----------------------   -------------------
+
+
+   DisturbancesRandomOrder  no  << optional parameter; default = no
+
+
+>> Other Extensions         Initialization File
+>> ----------------         -------------------
+
+
+RandomNumberSeed  4357
