@@ -1,35 +1,29 @@
 # LANDIS-II-v8-Rstudio
 
-This image closely follows the `Docker-LANDIS-II-release` image but uses `rocker/geospatial:4.5.1` as the base image,
-so it provides an Rstudio Server instance for interactive workflows.
+LANDIS-II v8 with R 4.6.0 and RStudio Server, built on [`rocker/geospatial:4.6.0`](https://rocker-project.org/images/versioned/rstudio.html). Intended for interactive workflows: connect to the running container from your browser to use RStudio alongside LANDIS-II.
 
-## Build the image
+**For users:** pull the pre-built image (no build step required).
+**For developers:** build the image locally using the instructions below.
 
-### Linux (bash)
+## Quick start: use the pre-built image
 
 ```shell
-cd ~/Tool-Docker-Apptainer
-
-docker build . \
-  -f Docker-LANDIS-II-v8-Rstudio/Dockerfile \
-  -t landis-ii-8-rstudio:release
+docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:main
 ```
 
 ## Run a container
 
-- specify the local port to use to connect to the container by passing `-p` with appropriate arguments
-  (e.g., `-p 127.0.0.1:8080:8787` allows connections on local port 8080; 8787 is the port used by Rstudio on the container);
-- a custom `PASSWORD` can be specified (if not specified, a random one will be used and displayed *once* at container launch);
-- local directories can be mounted as above;
-- `USERID` and `GROUPID` specify the user and group ids, respectively, and can be specified
-  to ensure user file permissions of the container match those of the mounted volume (defaults: `1000`)
-  (see <https://rocker-project.org/images/versioned/rstudio.html#userid-and-groupid>);
-- limit system resources available to the container by passing e.g., `--memory=64g` and `--cpus=8`;
+When launching an instance of the container:
 
-### Linux (bash)
+- specify the local port with `-p` (e.g., `-p 127.0.0.1:8080:8787` maps local port 8080 to RStudio's port 8787 inside the container);
+- set a `PASSWORD` for the `rstudio` user (if omitted, a random one is printed once at launch);
+- mount local directories with `--mount` to make your project files accessible;
+- set `USERID` and `GROUPID` to match your host user/group IDs so that file permissions on mounted volumes work correctly (defaults: `1000`);
+- limit resources with `--memory` and `--cpus`;
+
+### Linux / macOS (bash)
 
 ```shell
-## example
 docker run -d -it \
   -e USERID=$(id -u) \
   -e GROUPID=$(id -g) \
@@ -37,14 +31,53 @@ docker run -d -it \
   --cpus=4 \
   --memory=64g \
   -p 127.0.0.1:8080:8787 \
-  --mount type=bind,source=/home/$(id -un)/projects/LANDIS-II,target=/home/rstudio/LANDIS-II \
+  --mount type=bind,source="/path/to/your/project",target=/home/rstudio/project \
   --name landis01 \
-  landis-ii-8-rstudio:release
+  ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:main
 ```
 
-### Access the Rstudio instance
+### Windows (PowerShell)
 
-Open your web browser and connect to `localhost:8080`.
-Log in using username `rstudio` and the password set above.
+```shell
+docker run -d -it `
+  -e PASSWORD='<MySecretPassword>' `
+  --cpus=4 `
+  --memory=64g `
+  -p 127.0.0.1:8080:8787 `
+  --mount type=bind,source="C:\path\to\your\project",target=/home/rstudio/project `
+  --name landis01 `
+  ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:main
+```
+
+> **Note for Windows users:** `$(id -u)` and `$(id -g)` are Linux/macOS shell substitutions and are not available in PowerShell. Omitting `USERID`/`GROUPID` uses the defaults (1000); if you encounter permission issues on mounted files, set them explicitly (e.g., `-e USERID=1000`).
+
+### Access the RStudio instance
+
+Open your browser and navigate to `http://localhost:8080`.
+Log in with username `rstudio` and the password you set above.
 
 **See also:** <https://rocker-project.org/images/versioned/rstudio.html#how-to-use>
+
+## Build the image
+
+Build from the repository root so that shared files are available.
+
+### Linux / macOS (bash)
+
+```shell
+cd ~/Tool-Docker-Apptainer
+
+docker build . \
+  -f Docker-LANDIS-II-v8-Rstudio/Dockerfile \
+  -t landis-ii-v8-rstudio:release
+```
+
+### Windows (PowerShell)
+
+```shell
+cd ~/Tool-Docker-Apptainer
+
+docker build . `
+  -f Docker-LANDIS-II-v8-Rstudio/Dockerfile `
+  -t landis-ii-v8-rstudio:release
+```
