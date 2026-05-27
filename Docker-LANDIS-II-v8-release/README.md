@@ -1,6 +1,6 @@
 # Docker-LANDIS-II-v8-release
 
-LANDIS-II v8 (Ubuntu 24.04) with a fixed, tested set of extensions defined in [`extensions-v8-release.yaml`](../extensions-v8-release.yaml).
+LANDIS-II v8 (Ubuntu 24.04 and 26.04) with a fixed, tested set of extensions defined in [`extensions-v8-release.yaml`](../extensions-v8-release.yaml).
 
 **For users:** pull the pre-built image (no build step required).
 **For developers:** build the image locally using the instructions below.
@@ -8,8 +8,11 @@ LANDIS-II v8 (Ubuntu 24.04) with a fixed, tested set of extensions defined in [`
 ## Quick start: use the pre-built image
 
 ```shell
-docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-release:main
+docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-release:ubuntu-latest
 ```
+
+> 💡 **Tags:** `:ubuntu-latest`, `:latest`, and `:main` all point to the most recent Ubuntu LTS build (currently Ubuntu 26.04).
+> Use `:ubuntu-24.04` or `:ubuntu-26.04` to pin to a specific OS version.
 
 Then run a simulation (replace the path with your scenario folder):
 
@@ -19,7 +22,7 @@ docker run --rm \
   --cpus=4 \
   --memory=64g \
   --mount type=bind,src="/path/to/your/scenario",dst=/scenarioFolder \
-  ghcr.io/landis-ii-foundation/landis-ii-v8-release:main \
+  ghcr.io/landis-ii-foundation/landis-ii-v8-release:ubuntu-latest \
   /bin/sh -c "cd /scenarioFolder && dotnet \$LANDIS_CONSOLE scenario.txt"
 
 ## Windows (PowerShell)
@@ -27,7 +30,7 @@ docker run --rm `
   --cpus=4 `
   --memory=64g `
   --mount type=bind,src="C:\path\to\your\scenario",dst=/scenarioFolder `
-  ghcr.io/landis-ii-foundation/landis-ii-v8-release:main `
+  ghcr.io/landis-ii-foundation/landis-ii-v8-release:ubuntu-latest `
   /bin/sh -c "cd /scenarioFolder && dotnet `$LANDIS_CONSOLE scenario.txt"
 ```
 
@@ -79,7 +82,7 @@ See [`extensions-v8-release.yaml`](../extensions-v8-release.yaml) and [`librarie
 
 This image supersedes `Clean_Docker_LANDIS-II_8_AllExtensions` with the following improvements:
 
-- Ubuntu 24.04 (noble) base image instead of 22.04 (jammy);
+- Ubuntu 24.04 (noble) and 26.04 (resolute) base images, selectable via `--build-arg UBUNTU_VERSION=<version>`; defaults to 24.04;
 - `dotnet` installed from the `apt` repositories;
 - LANDIS-II placed at `/opt/landis-ii` (standard location for third-party software);
 - extension and library versions defined in shared `*.yaml` files, not hardcoded in the Dockerfile;
@@ -97,9 +100,17 @@ Build from the repository root so that shared files (`extension_files/`, `script
 ```shell
 cd ~/Tool-Docker-Apptainer
 
+## Ubuntu 26.04 (resolute) — recommended
 docker build . \
   -f Docker-LANDIS-II-v8-release/Dockerfile \
-  -t landis-ii-v8-release:release
+  --build-arg UBUNTU_VERSION=26.04 \
+  -t landis-ii-v8-release:ubuntu-26.04
+
+## Ubuntu 24.04 (noble)
+docker build . \
+  -f Docker-LANDIS-II-v8-release/Dockerfile \
+  --build-arg UBUNTU_VERSION=24.04 \
+  -t landis-ii-v8-release:ubuntu-24.04
 ```
 
 ### Windows (PowerShell)
@@ -107,14 +118,22 @@ docker build . \
 ```shell
 cd ~/Tool-Docker-Apptainer
 
+## Ubuntu 26.04 (resolute) — recommended
 docker build . `
   -f Docker-LANDIS-II-v8-release/Dockerfile `
-  -t landis-ii-v8-release:release
+  --build-arg UBUNTU_VERSION=26.04 `
+  -t landis-ii-v8-release:ubuntu-26.04
+
+## Ubuntu 24.04 (noble)
+docker build . `
+  -f Docker-LANDIS-II-v8-release/Dockerfile `
+  --build-arg UBUNTU_VERSION=24.04 `
+  -t landis-ii-v8-release:ubuntu-24.04
 ```
 
 ## Run a locally built container
 
-Replace `landis-ii-v8-release:release` with `ghcr.io/landis-ii-foundation/landis-ii-v8-release:main` if you pulled the pre-built image instead.
+Replace `landis-ii-v8-release:ubuntu-26.04` with `ghcr.io/landis-ii-foundation/landis-ii-v8-release:ubuntu-latest` if you pulled the pre-built image instead.
 
 ### Interactive container
 
@@ -126,7 +145,7 @@ docker run -it \
   --memory=64g \
   --mount type=bind,src="/path/to/your/scenario",dst=/scenarioFolder \
   --name landis01 \
-  landis-ii-v8-release:release
+  landis-ii-v8-release:ubuntu-26.04
 ```
 
 #### Windows (PowerShell)
@@ -137,7 +156,7 @@ docker run -it `
   --memory=64g `
   --mount type=bind,src="C:\path\to\your\scenario",dst=/scenarioFolder `
   --name landis01 `
-  landis-ii-v8-release:release
+  landis-ii-v8-release:ubuntu-26.04
 ```
 
 ### Non-interactive container (run a single simulation)
@@ -150,7 +169,7 @@ docker run --rm \
   --memory=64g \
   --mount type=bind,src="/path/to/your/scenario",dst=/scenarioFolder \
   --name landis01 \
-  landis-ii-v8-release:release \
+  landis-ii-v8-release:ubuntu-26.04 \
   /bin/sh -c "cd /scenarioFolder && dotnet \$LANDIS_CONSOLE scenario.txt"
 ```
 
@@ -162,6 +181,6 @@ docker run --rm `
   --memory=64g `
   --mount type=bind,src="C:\path\to\your\scenario",dst=/scenarioFolder `
   --name landis01 `
-  landis-ii-v8-release:release `
+  landis-ii-v8-release:ubuntu-26.04 `
   /bin/sh -c "cd /scenarioFolder && dotnet `$LANDIS_CONSOLE scenario.txt"
 ```

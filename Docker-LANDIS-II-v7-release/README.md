@@ -8,8 +8,11 @@ LANDIS-II v7 (Ubuntu 22.04) with a fixed, tested set of extensions defined in [`
 ## Quick start: use the pre-built image
 
 ```shell
-docker pull ghcr.io/landis-ii-foundation/landis-ii-v7-release:main
+docker pull ghcr.io/landis-ii-foundation/landis-ii-v7-release:ubuntu-latest
 ```
+
+> 💡 **Tags:** `:ubuntu-latest`, `:latest`, and `:main` all point to the same image (Ubuntu 22.04 — the only supported OS for v7).
+> `:main` is retained for backwards compatibility.
 
 Then run a simulation (replace the path with your scenario folder):
 
@@ -19,7 +22,7 @@ docker run --rm \
   --cpus=4 \
   --memory=64g \
   --mount type=bind,src="/path/to/your/scenario",dst=/scenarioFolder \
-  ghcr.io/landis-ii-foundation/landis-ii-v7-release:main \
+  ghcr.io/landis-ii-foundation/landis-ii-v7-release:ubuntu-latest \
   /bin/sh -c "cd /scenarioFolder && dotnet \$LANDIS_CONSOLE scenario.txt"
 
 ## Windows (PowerShell)
@@ -27,7 +30,7 @@ docker run --rm `
   --cpus=4 `
   --memory=64g `
   --mount type=bind,src="C:\path\to\your\scenario",dst=/scenarioFolder `
-  ghcr.io/landis-ii-foundation/landis-ii-v7-release:main `
+  ghcr.io/landis-ii-foundation/landis-ii-v7-release:ubuntu-latest `
   /bin/sh -c "cd /scenarioFolder && dotnet `$LANDIS_CONSOLE scenario.txt"
 ```
 
@@ -120,7 +123,7 @@ docker build . `
 
 ## Run a locally built container
 
-Replace `landis-ii-v7-release:release` with `ghcr.io/landis-ii-foundation/landis-ii-v7-release:main` if you pulled the pre-built image instead.
+Replace `landis-ii-v7-release:release` with `ghcr.io/landis-ii-foundation/landis-ii-v7-release:ubuntu-latest` if you pulled the pre-built image instead.
 
 ### Interactive container
 

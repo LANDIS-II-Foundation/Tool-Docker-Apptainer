@@ -31,21 +31,58 @@ jobs:
           # - dockercontext: ./Clean_Docker_LANDIS-II_8_Latest_Commits
           #   dockerfile: ./Clean_Docker_LANDIS-II_8_Latest_Commits/Dockerfile
           #   image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-latest
+
+          ## v7 — stays on Ubuntu 22.04 permanently (.NET 2.2 / libssl1.1 requirement)
           - dockercontext: .
             dockerfile: ./Docker-LANDIS-II-v7-release/Dockerfile
             image: ghcr.io/${{ github.repository_owner }}/landis-ii-v7-release
+            ubuntu_version: "22.04"
+            is_latest: "true"
+            build_ubuntu_arg: "false"
+
+          ## v8-release — Ubuntu 24.04 and 26.04
           - dockercontext: .
             dockerfile: ./Docker-LANDIS-II-v8-release/Dockerfile
             image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-release
+            ubuntu_version: "24.04"
+            is_latest: "false"
+            build_ubuntu_arg: "true"
+          - dockercontext: .
+            dockerfile: ./Docker-LANDIS-II-v8-release/Dockerfile
+            image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-release
+            ubuntu_version: "26.04"
+            is_latest: "true"
+            build_ubuntu_arg: "true"
+
+          ## v8-UCL2-release — Ubuntu 24.04 and 26.04
           - dockercontext: .
             dockerfile: ./Docker-LANDIS-II-v8-UCL2-release/Dockerfile
             image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-uclv2-release
+            ubuntu_version: "24.04"
+            is_latest: "false"
+            build_ubuntu_arg: "true"
+          - dockercontext: .
+            dockerfile: ./Docker-LANDIS-II-v8-UCL2-release/Dockerfile
+            image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-uclv2-release
+            ubuntu_version: "26.04"
+            is_latest: "true"
+            build_ubuntu_arg: "true"
+
+          ## v8-R — rocker/r-ver:4.6.0 is Ubuntu 24.04; revisit when R 4.6.1 ships (~June 2026)
           - dockercontext: .
             dockerfile: ./Docker-LANDIS-II-v8-R/Dockerfile
             image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-R
+            ubuntu_version: "24.04"
+            is_latest: "true"
+            build_ubuntu_arg: "false"
+
+          ## v8-Rstudio — rocker/geospatial:4.6.0 is Ubuntu 24.04; revisit when R 4.6.1 ships (~June 2026)
           - dockercontext: .
             dockerfile: ./Docker-LANDIS-II-v8-Rstudio/Dockerfile
             image: ghcr.io/${{ github.repository_owner }}/landis-ii-v8-Rstudio
+            ubuntu_version: "24.04"
+            is_latest: "true"
+            build_ubuntu_arg: "false"
 
     ## Set the permissions granted to the `GITHUB_TOKEN` for the actions in this job
     permissions:
@@ -70,11 +107,25 @@ jobs:
 
       ## Extract metadata (tags, labels) for Docker
       ## https://github.com/docker/metadata-action
+      ##
+      ## Tag scheme:
+      ##   :ubuntu-<version>  — pinnable OS-specific tag (all entries)
+      ##   :ubuntu-latest     — most recent Ubuntu LTS build (is_latest entries only)
+      ##   :latest            — alias for :ubuntu-latest (is_latest entries only)
+      ##   :main              — alias for :ubuntu-latest, kept for backwards compatibility (is_latest entries only)
+      ##
+      ## For images with multiple Ubuntu versions (v8-release, v8-UCL2-release), :ubuntu-latest/:latest/:main
+      ## are only pushed by the is_latest entry to avoid a race condition between parallel CI jobs.
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: ${{ matrix.image }}
+          tags: |
+            type=ref,event=branch,enable=${{ matrix.is_latest == 'true' }}
+            type=raw,value=ubuntu-${{ matrix.ubuntu_version }}
+            type=raw,value=ubuntu-latest,enable=${{ matrix.is_latest == 'true' }}
+            type=raw,value=latest,enable=${{ matrix.is_latest == 'true' }}
 
       ## Build and push Docker image with Buildx (don't push on PR)
       ## https://github.com/docker/build-push-action
@@ -87,6 +138,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: ${{ matrix.build_ubuntu_arg == 'true' && format('UBUNTU_VERSION={0}', matrix.ubuntu_version) || '' }}
 
       ## Generates an artifact attestation for image build provenance
       ## https://github.com/actions/attest-build-provenance
