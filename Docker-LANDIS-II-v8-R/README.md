@@ -1,6 +1,6 @@
 # LANDIS-II-v8-R
 
-This image closely follows the `Docker-LANDIS-II-release` image but uses `rocker/r-ver:4.5.1` as the base image,
+This image closely follows the `Docker-LANDIS-II-release` image but uses `rocker/r-ver:4.6.0` as the base image,
 and adds geospatial libraries.
 
 ## Build the image
