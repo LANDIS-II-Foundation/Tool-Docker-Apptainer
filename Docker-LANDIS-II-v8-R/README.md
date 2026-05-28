@@ -12,8 +12,11 @@ LANDIS-II v8 with R 4.6.0, built on [`rocker/r-ver:4.6.0`](https://rocker-projec
 ## Quick start: use the pre-built image
 
 ```shell
-docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-r:main
+docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-r:ubuntu-latest
 ```
+
+> 💡 **Tags:** `:ubuntu-latest`, `:latest`, and `:main` all point to the same image (Ubuntu 24.04 via `rocker/r-ver:4.6.0`).
+> `:main` is retained for backwards compatibility.
 
 Run an interactive R session with your project files available inside the container:
 
@@ -23,7 +26,7 @@ docker run -it --rm \
   --cpus=4 \
   --memory=64g \
   --mount type=bind,src="/path/to/your/project",dst=/home/project \
-  ghcr.io/landis-ii-foundation/landis-ii-v8-r:main \
+  ghcr.io/landis-ii-foundation/landis-ii-v8-r:ubuntu-latest \
   R
 
 ## Windows (PowerShell)
@@ -31,7 +34,7 @@ docker run -it --rm `
   --cpus=4 `
   --memory=64g `
   --mount type=bind,src="C:\path\to\your\project",dst=/home/project `
-  ghcr.io/landis-ii-foundation/landis-ii-v8-r:main `
+  ghcr.io/landis-ii-foundation/landis-ii-v8-r:ubuntu-latest `
   R
 ```
 

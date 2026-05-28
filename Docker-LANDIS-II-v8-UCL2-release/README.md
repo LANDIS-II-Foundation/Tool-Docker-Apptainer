@@ -1,6 +1,6 @@
 # Docker-LANDIS-II-v8-UCLv2-release
 
-LANDIS-II v8 (Ubuntu 24.04) with extensions updated for **Universal Cohort Library (UCL) v2**, defined in [`extensions-v8-UCL2-release.yaml`](../extensions-v8-UCL2-release.yaml). UCL v2 fixes a significant biomass-removal bug present in earlier extensions — see the [warning in the main README](../README.md) for details.
+LANDIS-II v8 (Ubuntu 24.04 and 26.04) with extensions updated for **Universal Cohort Library (UCL) v2**, defined in [`extensions-v8-UCL2-release.yaml`](../extensions-v8-UCL2-release.yaml). UCL v2 fixes a significant biomass-removal bug present in earlier extensions — see the [warning in the main README](../README.md) for details.
 
 > **Note:** Some extensions are still pending UCL v2 updates and are therefore not included. Extensions not yet updated include: PnET Succession, Base BDA, Dynamic Biomass Fuels, Dynamic Fire System, LinearWind, Forest Roads Simulation, Magic Harvest, Output Biomass (PnET), Output Wildlife Habitat, and Local Habitat Suitability Output. Use [`landis-ii-v8-release`](../Docker-LANDIS-II-v8-release/) if you need those extensions.
 
@@ -10,8 +10,11 @@ LANDIS-II v8 (Ubuntu 24.04) with extensions updated for **Universal Cohort Libra
 ## Quick start: use the pre-built image
 
 ```shell
-docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-uclv2-release:main
+docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-uclv2-release:ubuntu-latest
 ```
+
+> 💡 **Tags:** `:ubuntu-latest`, `:latest`, and `:main` all point to the most recent Ubuntu LTS build (currently Ubuntu 26.04).
+> Use `:ubuntu-24.04` or `:ubuntu-26.04` to pin to a specific OS version.
 
 Then run a simulation (replace the path with your scenario folder):
 
@@ -21,7 +24,7 @@ docker run --rm \
   --cpus=4 \
   --memory=64g \
   --mount type=bind,src="/path/to/your/scenario",dst=/scenarioFolder \
-  ghcr.io/landis-ii-foundation/landis-ii-v8-uclv2-release:main \
+  ghcr.io/landis-ii-foundation/landis-ii-v8-uclv2-release:ubuntu-latest \
   /bin/sh -c "cd /scenarioFolder && dotnet \$LANDIS_CONSOLE scenario.txt"
 
 ## Windows (PowerShell)
@@ -29,7 +32,7 @@ docker run --rm `
   --cpus=4 `
   --memory=64g `
   --mount type=bind,src="C:\path\to\your\scenario",dst=/scenarioFolder `
-  ghcr.io/landis-ii-foundation/landis-ii-v8-uclv2-release:main `
+  ghcr.io/landis-ii-foundation/landis-ii-v8-uclv2-release:ubuntu-latest `
   /bin/sh -c "cd /scenarioFolder && dotnet `$LANDIS_CONSOLE scenario.txt"
 ```
 
@@ -77,7 +80,7 @@ This image builds on `Docker-LANDIS-II-v8-release` with the following addition:
 
 All other enhancements from `Docker-LANDIS-II-v8-release` also apply:
 
-- Ubuntu 24.04 (noble) base image;
+- Ubuntu 24.04 (noble) and 26.04 (resolute) base images, selectable via `--build-arg UBUNTU_VERSION=<version>`; defaults to 24.04;
 - `dotnet` installed from the `apt` repositories;
 - LANDIS-II placed at `/opt/landis-ii`;
 - extension and library versions defined in shared `*.yaml` files;
@@ -94,9 +97,17 @@ Build from the repository root so that shared files (`extension_files/`, `script
 ```shell
 cd ~/Tool-Docker-Apptainer
 
+## Ubuntu 26.04 (resolute) — recommended
 docker build . \
   -f Docker-LANDIS-II-v8-UCL2-release/Dockerfile \
-  -t landis-ii-v8-uclv2-release:release
+  --build-arg UBUNTU_VERSION=26.04 \
+  -t landis-ii-v8-uclv2-release:ubuntu-26.04
+
+## Ubuntu 24.04 (noble)
+docker build . \
+  -f Docker-LANDIS-II-v8-UCL2-release/Dockerfile \
+  --build-arg UBUNTU_VERSION=24.04 \
+  -t landis-ii-v8-uclv2-release:ubuntu-24.04
 ```
 
 ### Windows (PowerShell)
@@ -104,14 +115,22 @@ docker build . \
 ```shell
 cd ~/Tool-Docker-Apptainer
 
+## Ubuntu 26.04 (resolute) — recommended
 docker build . `
   -f Docker-LANDIS-II-v8-UCL2-release/Dockerfile `
-  -t landis-ii-v8-uclv2-release:release
+  --build-arg UBUNTU_VERSION=26.04 `
+  -t landis-ii-v8-uclv2-release:ubuntu-26.04
+
+## Ubuntu 24.04 (noble)
+docker build . `
+  -f Docker-LANDIS-II-v8-UCL2-release/Dockerfile `
+  --build-arg UBUNTU_VERSION=24.04 `
+  -t landis-ii-v8-uclv2-release:ubuntu-24.04
 ```
 
 ## Run a locally built container
 
-Replace `landis-ii-v8-uclv2-release:release` with `ghcr.io/landis-ii-foundation/landis-ii-v8-uclv2-release:main` if you pulled the pre-built image instead.
+Replace `landis-ii-v8-uclv2-release:ubuntu-26.04` with `ghcr.io/landis-ii-foundation/landis-ii-v8-uclv2-release:ubuntu-latest` if you pulled the pre-built image instead.
 
 ### Interactive container
 
@@ -123,7 +142,7 @@ docker run -it \
   --memory=64g \
   --mount type=bind,src="/path/to/your/scenario",dst=/scenarioFolder \
   --name landis01 \
-  landis-ii-v8-uclv2-release:release
+  landis-ii-v8-uclv2-release:ubuntu-26.04
 ```
 
 #### Windows (PowerShell)
@@ -134,7 +153,7 @@ docker run -it `
   --memory=64g `
   --mount type=bind,src="C:\path\to\your\scenario",dst=/scenarioFolder `
   --name landis01 `
-  landis-ii-v8-uclv2-release:release
+  landis-ii-v8-uclv2-release:ubuntu-26.04
 ```
 
 ### Non-interactive container (run a single simulation)
@@ -147,7 +166,7 @@ docker run --rm \
   --memory=64g \
   --mount type=bind,src="/path/to/your/scenario",dst=/scenarioFolder \
   --name landis01 \
-  landis-ii-v8-uclv2-release:release \
+  landis-ii-v8-uclv2-release:ubuntu-26.04 \
   /bin/sh -c "cd /scenarioFolder && dotnet \$LANDIS_CONSOLE scenario.txt"
 ```
 
@@ -159,6 +178,6 @@ docker run --rm `
   --memory=64g `
   --mount type=bind,src="C:\path\to\your\scenario",dst=/scenarioFolder `
   --name landis01 `
-  landis-ii-v8-uclv2-release:release `
+  landis-ii-v8-uclv2-release:ubuntu-26.04 `
   /bin/sh -c "cd /scenarioFolder && dotnet `$LANDIS_CONSOLE scenario.txt"
 ```

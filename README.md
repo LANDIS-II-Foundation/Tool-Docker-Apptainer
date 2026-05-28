@@ -89,8 +89,8 @@ These images provide a minimal LANDIS-II installation, including GDAL, plus a Py
 
 | Image name             | Subdirectory                               | Description                                         |
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
-| `landis-ii-v8-release` | `Docker-LANDIS-II-v8-release/`             | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml) |
-| `landis-ii-v8-uclv2-release` | `Docker-LANDIS-II-v8-UCL2-release/` | LANDIS-II v8 (Ubuntu 24.04); [extensions updated for UCL v2](extensions-v8-UCL2-release.yaml) |
+| `landis-ii-v8-release` | `Docker-LANDIS-II-v8-release/`             | LANDIS-II v8 (Ubuntu 24.04 and 26.04); [fixed versions of v8 extensions](extensions-v8-release.yaml) |
+| `landis-ii-v8-uclv2-release` | `Docker-LANDIS-II-v8-UCL2-release/` | LANDIS-II v8 (Ubuntu 24.04 and 26.04); [extensions updated for UCL v2](extensions-v8-UCL2-release.yaml) |
 | ~~`landis-ii-v8-linux`~~ | ~~`Clean_Docker_LANDIS-II_8_AllExtensions/`~~ | **Deprecated** — superseded by `landis-ii-v8-release` |
 
 ### R/RStudio images
@@ -101,8 +101,8 @@ These images are based on the generic images and add R and/or a running RStudio 
 
 | Image name             | Subdirectory                               | Description                                         |
 | ---------------------- | ------------------------------------------ | --------------------------------------------------- |
-| `landis-ii-v8-r`       | `Docker-LANDIS-II-v8-R/`                   | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml); R 4.6.0 |
-| `landis-ii-v8-rstudio` | `Docker-LANDIS-II-v8-Rstudio/`             | LANDIS-II v8 (Ubuntu 24.04); [fixed versions of v8 extensions](extensions-v8-release.yaml); R 4.6.0; RStudio Server |
+| `landis-ii-v8-r`       | `Docker-LANDIS-II-v8-R/`                   | LANDIS-II v8 (Ubuntu 24.04 via `rocker/r-ver:4.6.0`); [fixed versions of v8 extensions](extensions-v8-release.yaml); R 4.6.0 |
+| `landis-ii-v8-rstudio` | `Docker-LANDIS-II-v8-Rstudio/`             | LANDIS-II v8 (Ubuntu 24.04 via `rocker/geospatial:4.6.0`); [fixed versions of v8 extensions](extensions-v8-release.yaml); R 4.6.0; RStudio Server |
 
 ### Other custom images
 
@@ -118,8 +118,15 @@ Pre-built images are publicly available on the GitHub Container Registry and **d
 
 ```shell
 ## replace <imagename> with one from the tables above (e.g., landis-ii-v8-release)
-docker pull ghcr.io/landis-ii-foundation/<imagename>:main
+docker pull ghcr.io/landis-ii-foundation/<imagename>:ubuntu-latest
 ```
+
+> 💡 **Image tags:** All images provide the following tags:
+> - `:ubuntu-latest` — most recent Ubuntu LTS build **(recommended)**
+> - `:latest` — alias for `:ubuntu-latest`
+> - `:main` — alias for `:ubuntu-latest`, kept for backwards compatibility
+> - `:ubuntu-<version>` — pinned to a specific Ubuntu version (e.g. `:ubuntu-24.04`, `:ubuntu-26.04`);
+>   useful for reproducibility or if a newer OS version introduces unexpected behaviour
 
 > 💡 You can also skip the `docker pull` step entirely: if you use an image name in a `docker run` command and the image is not already on your computer, Docker will download it automatically.
 

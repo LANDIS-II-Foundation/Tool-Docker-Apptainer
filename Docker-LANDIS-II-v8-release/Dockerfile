@@ -1,4 +1,6 @@
-FROM ubuntu:24.04
+ARG UBUNTU_VERSION=24.04
+FROM ubuntu:${UBUNTU_VERSION}
+ARG UBUNTU_VERSION   ## must re-declare after FROM to stay in scope
 
 LABEL org.opencontainers.image.authors="clem.hardy@pm.me; achubaty@for-cast.ca;"
 
@@ -16,6 +18,10 @@ ENV LC_ALL=C.UTF-8
 ## - python needed for Magic Harvest;
 ## - `xmlstarlet` used to edit xml in .csproj files;
 RUN apt-get update && apt-get upgrade -y \
+  && apt-get install -y software-properties-common \
+  && if [ "${UBUNTU_VERSION}" = "26.04" ]; then \
+       add-apt-repository ppa:dotnet/backports && apt-get update; \
+     fi \
   && apt-get install -y \
     dotnet-sdk-8.0 \
     gdal-bin \
@@ -25,14 +31,22 @@ RUN apt-get update && apt-get upgrade -y \
     libpng16-16t64 \
     mono-utils \
     nano \
-    pip \
     python3 \
+    python3-pip \
     python-is-python3 \
-    software-properties-common \
     vim \
     wget \
     xmlstarlet \
   && apt-get clean -y && rm -rf /var/lib/apt/lists/* ## clean up to save space
+
+## Ubuntu 26.04 changed SO names for three libraries that Gdal.Core NuGet's bundled libgdal.so.20
+## was compiled against: libxml2 (.so.2 → .so.16), libicuuc/libicudata (.so.74 → .so.78)
+RUN if [ "${UBUNTU_VERSION}" = "26.04" ]; then \
+      ln -s /usr/lib/x86_64-linux-gnu/libxml2.so.16 /usr/lib/x86_64-linux-gnu/libxml2.so.2 \
+      && ln -s /usr/lib/x86_64-linux-gnu/libicuuc.so.78 /usr/lib/x86_64-linux-gnu/libicuuc.so.74 \
+      && ln -s /usr/lib/x86_64-linux-gnu/libicudata.so.78 /usr/lib/x86_64-linux-gnu/libicudata.so.74 \
+      && ldconfig; \
+    fi
 
 ## install yq (used to parse yaml files) from source
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq \

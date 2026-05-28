@@ -13,8 +13,11 @@ LANDIS-II v8 with R 4.6.0 and RStudio Server, built on [`rocker/geospatial:4.6.0
 ## Quick start: use the pre-built image
 
 ```shell
-docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:main
+docker pull ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:ubuntu-latest
 ```
+
+> 💡 **Tags:** `:ubuntu-latest`, `:latest`, and `:main` all point to the same image (Ubuntu 24.04 via `rocker/geospatial:4.6.0`).
+> `:main` is retained for backwards compatibility.
 
 ## Run a container
 
@@ -38,7 +41,7 @@ docker run -d -it \
   -p 127.0.0.1:8080:8787 \
   --mount type=bind,source="/path/to/your/project",target=/home/rstudio/project \
   --name landis01 \
-  ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:main
+  ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:ubuntu-latest
 ```
 
 ### Windows (PowerShell)
@@ -51,7 +54,7 @@ docker run -d -it `
   -p 127.0.0.1:8080:8787 `
   --mount type=bind,source="C:\path\to\your\project",target=/home/rstudio/project `
   --name landis01 `
-  ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:main
+  ghcr.io/landis-ii-foundation/landis-ii-v8-rstudio:ubuntu-latest
 ```
 
 > **Note for Windows users:** `$(id -u)` and `$(id -g)` are Linux/macOS shell substitutions and are not available in PowerShell. Omitting `USERID`/`GROUPID` uses the defaults (1000); if you encounter permission issues on mounted files, set them explicitly (e.g., `-e USERID=1000`).
