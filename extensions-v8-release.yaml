@@ -18,8 +18,16 @@
 #   commit: dde267702c587c10d04951f4c4ea754ebeb67bfa ## v8 branch
 
 - repo: Extension-ForCS-Succession
-  org: LANDIS-II-Foundation
-  commit: b761895100a7b30174dd78523d57cc63c592c887
+  org: FOR-CAST
+  ## Cherry-pick of `Improve fire severity handling in Soil.cs` (lazy
+  ## SiteVars.FireSeverity init) on top of the upstream LANDIS-II-Foundation
+  ## commit `b761895100a7b30174dd78523d57cc63c592c887`. Without this fix,
+  ## ForCS NREs at `Soil.cs:729` the first time Dynamic Fire damages a cohort
+  ## (`SiteVars.FireSeverity` is null because ForCS init runs before Dynamic
+  ## Fire registers the site var). PR pending upstream.
+  ## Branch: FOR-CAST/firesev-init-uclv1 (cherry-pick of ef67149 onto upstream
+  ## LANDIS-II-Foundation b761895). Replace the SHA below if the branch moves.
+  commit: ca3d760c18f9858d3ffac736f75558bf3c00f761
 
 - repo: Extension-NECN-Succession
   org: LANDIS-II-Foundation
