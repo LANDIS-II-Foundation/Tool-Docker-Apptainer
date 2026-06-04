@@ -1,0 +1,7 @@
+LandisData  Species
+
+>>                      Sexual  Seed Disperal Dist  Vegetative   Sprout Age  Post-Fire
+>> Name      Longevity  Maturity  Effective  Maximum  Reprod Prob  Min   Max   Regen
+>> ----      ---------  --------  ---------  -------  -----------  ----------  --------
+   pinubank     100       15        300       300       0          0     0   serotiny
+   querelli     300       35        200     3,000       0          0     0   none

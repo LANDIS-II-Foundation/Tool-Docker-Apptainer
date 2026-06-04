@@ -84,7 +84,8 @@ ENV LANDIS_EXT_TOOL="$LANDIS_REL_DIR/Landis.Extensions.dll"
 WORKDIR $LANDIS_DIR
 
 COPY scripts $LANDIS_DIR/scripts
-RUN chmod a+x $LANDIS_DIR/scripts/*.sh
+RUN sed -i 's/\r$//' $LANDIS_DIR/scripts/*.sh \
+    && chmod a+x $LANDIS_DIR/scripts/*.sh
 
 ################################################################
 ## COMPILING LANDIS-II AND EXTENSIONS

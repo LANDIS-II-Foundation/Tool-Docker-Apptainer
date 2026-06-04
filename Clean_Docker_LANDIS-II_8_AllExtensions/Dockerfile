@@ -82,7 +82,8 @@ COPY ./files_to_help_compilation/editing_csproj_LANDIS-II_files.py $LANDIS_FOLDE
 
 # Transfering the sh script that allows us to only download one folder from one commit from github
 COPY ./files_to_help_compilation/downloadSpecificGitCommitAndFolder.sh $LANDIS_FOLDER
-RUN chmod +x $LANDIS_FOLDER/downloadSpecificGitCommitAndFolder.sh
+RUN sed -i 's/\r$//' $LANDIS_FOLDER/downloadSpecificGitCommitAndFolder.sh \
+    && chmod +x $LANDIS_FOLDER/downloadSpecificGitCommitAndFolder.sh
 
 ###### COMPILING AND REGISTERING EXTENSIONS
 # INFO: The files necessary for the compilation are downloaded through the script downloadSpecificGitCommitAndFolder.sh
@@ -503,6 +504,10 @@ ARG TESTS_DIR="$LANDIS_FOLDER/tests"
 COPY ./tests $TESTS_DIR
 
 WORKDIR $TESTS_DIR/TestPnET_AllExtension
+
+RUN dotnet $LANDIS_CONSOLE scenario.txt
+
+WORKDIR $TESTS_DIR/TestForCS_v8
 
 RUN dotnet $LANDIS_CONSOLE scenario.txt
 

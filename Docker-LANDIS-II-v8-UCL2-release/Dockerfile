@@ -1,4 +1,6 @@
-FROM ubuntu:24.04
+ARG UBUNTU_VERSION=24.04
+FROM ubuntu:${UBUNTU_VERSION}
+ARG UBUNTU_VERSION   ## must re-declare after FROM to stay in scope
 
 LABEL org.opencontainers.image.authors="clem.hardy@pm.me; achubaty@for-cast.ca;"
 
@@ -16,6 +18,10 @@ ENV LC_ALL=C.UTF-8
 ## - python needed for Magic Harvest;
 ## - `xmlstarlet` used to edit xml in .csproj files;
 RUN apt-get update && apt-get upgrade -y \
+  && apt-get install -y software-properties-common \
+  && if [ "${UBUNTU_VERSION}" = "26.04" ]; then \
+       add-apt-repository ppa:dotnet/backports && apt-get update; \
+     fi \
   && apt-get install -y \
     dotnet-sdk-8.0 \
     gdal-bin \
@@ -25,10 +31,9 @@ RUN apt-get update && apt-get upgrade -y \
     libpng16-16t64 \
     mono-utils \
     nano \
-    pip \
     python3 \
+    python3-pip \
     python-is-python3 \
-    software-properties-common \
     vim \
     wget \
     xmlstarlet \
@@ -44,6 +49,14 @@ RUN pip install --no-cache-dir \
     geopandas \
     scipy
 
+## Ubuntu 26.04 changed SO names for three libraries that Gdal.Core NuGet's bundled libgdal.so.20
+## was compiled against: libxml2 (.so.2 → .so.16), libicuuc/libicudata (.so.74 → .so.78)
+RUN if [ "${UBUNTU_VERSION}" = "26.04" ]; then \
+      ln -s /usr/lib/x86_64-linux-gnu/libxml2.so.16 /usr/lib/x86_64-linux-gnu/libxml2.so.2 \
+      && ln -s /usr/lib/x86_64-linux-gnu/libicuuc.so.78 /usr/lib/x86_64-linux-gnu/libicuuc.so.74 \
+      && ln -s /usr/lib/x86_64-linux-gnu/libicudata.so.78 /usr/lib/x86_64-linux-gnu/libicudata.so.74 \
+      && ldconfig; \
+    fi
 
 ## install yq (used to parse yaml files) from source
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq \
@@ -79,7 +92,8 @@ ENV LANDIS_EXT_TOOL="$LANDIS_REL_DIR/Landis.Extensions.dll"
 WORKDIR $LANDIS_DIR
 
 COPY scripts $LANDIS_DIR/scripts
-RUN chmod a+x $LANDIS_DIR/scripts/*.sh
+RUN sed -i 's/\r$//' $LANDIS_DIR/scripts/*.sh \
+    && chmod a+x $LANDIS_DIR/scripts/*.sh
 
 ################################################################
 ## COMPILING LANDIS-II AND EXTENSIONS
@@ -102,7 +116,7 @@ RUN git clone $LANDIS_GITHUB/Support-Library-Dlls-v8.git \
 ## get, build, and register all available extensions
 ##
 ##  - necessary files are downloaded and built using `scripts/install_extensions_v8.sh`;
-##  - the script parses `extensions-v8-release.yaml` to checkout specific commits;
+##  - the script parses `extensions-v8-UCL2-release.yaml` to checkout specific commits;
 ##  - it uses sparse checkout of specific directories to avoid downloading the entire repo;
 ##  - it cleans up afterwards, removing the extension source files to save space in the image;
 
@@ -149,6 +163,10 @@ RUN scripts/add_console_csproj_dlls.sh $LANDIS_DIR \
 COPY ./tests $TESTS_DIR
 
 WORKDIR $TESTS_DIR/TestNECN_UCLv2_AllExtension
+
+RUN dotnet $LANDIS_CONSOLE scenario.txt
+
+WORKDIR $TESTS_DIR/TestForCS_v8
 
 RUN dotnet $LANDIS_CONSOLE scenario.txt
 

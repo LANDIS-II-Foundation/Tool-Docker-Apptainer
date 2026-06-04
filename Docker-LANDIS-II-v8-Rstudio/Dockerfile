@@ -1,4 +1,4 @@
-FROM rocker/geospatial:4.5.1
+FROM rocker/geospatial:4.6.0
 
 LABEL org.opencontainers.image.authors="clem.hardy@pm.me; achubaty@for-cast.ca;"
 
@@ -65,7 +65,8 @@ ENV LANDIS_EXT_TOOL="$LANDIS_REL_DIR/Landis.Extensions.dll"
 WORKDIR $LANDIS_DIR
 
 COPY scripts $LANDIS_DIR/scripts
-RUN chmod a+x $LANDIS_DIR/scripts/*.sh
+RUN sed -i 's/\r$//' $LANDIS_DIR/scripts/*.sh \
+    && chmod a+x $LANDIS_DIR/scripts/*.sh
 
 ################################################################
 ## COMPILING LANDIS-II AND EXTENSIONS
@@ -135,6 +136,10 @@ RUN scripts/add_console_csproj_dlls.sh $LANDIS_DIR \
 COPY ./tests $TESTS_DIR
 
 WORKDIR $TESTS_DIR/TestPnET_AllExtension
+
+RUN dotnet $LANDIS_CONSOLE scenario.txt
+
+WORKDIR $TESTS_DIR/TestForCS_v8
 
 RUN dotnet $LANDIS_CONSOLE scenario.txt
 

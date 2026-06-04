@@ -1,0 +1,127 @@
+LandisData  "ForC Succession"
+
+DisturbFireTransferDOM    
+>> This table determines the fire impacts on the DOM and soil pools. Zero and the default is no transfers.
+>> We allow only certain transfers at this point.
+>> From any pool to Gas, from aboveground pools and snags to FPS (Forest Products Sector), and from snags to the ground 
+>> (stem to medium or other to fast above)
+>> No other transfers are allowed.
+>> 
+>>  Intensity   From    To      To      To
+>>              DOM/SoilAir     DOM/Soil FPS
+>>  ---------   ----    ----    -----   ----
+	1	1	0.7	0	0
+	1	2	0.02	0	0
+	1	3	0.7	0	0
+	1	5	0.04	0	0
+	1	6	0.44	0	0
+	2	1	0.75	0	0
+	2	2	0.04	0	0
+	2	3	0.75	0	0
+	2	5	0.04	0	0
+	2	6	0.54	0	0
+	2	8	0.02	0.2	0
+	2	9	0.4	0.2	0
+	3	1	0.76	0	0
+	3	2	0.04	0	0
+	3	3	0.76	0	0
+	3	5	0.08	0	0
+	3	6	0.51	0	0
+	3	8	0.04	0.3	0
+	3	9	0.68	0.3	0
+	4	1	0.88	0	0
+	4	2	0.06	0	0
+	4	3	0.88	0	0
+	4	5	0.16	0	0
+	4	6	0.75	0	0
+	4	8	0.08	0.4	0
+	4	9	0.645	0.2	0
+	5	1	1	0	0
+	5	2	0.08	0	0
+	5	3	1	0	0
+	5	5	0.24	0	0
+	5	6	0.99	0	0
+	5	8	0.12	0.6	0
+	5	9	0.61	0.3	0
+
+DisturbOtherTransferDOM    
+>> This table describes how the DOM and Soil pools should be affected by non-fire disturbances.
+>> We allow only certain transfers at this point.
+>> From any pool to Gas, from aboveground pools and snags to FPS, and from snags to the ground 
+>> (stem to medium or other to fast above)
+>> No other transfers are allowed.
+>> Default is no transfer
+
+>>  Disturbance     From    To      To      To
+>>  Type            DOM     Air     DOM     FPS
+>>  -----------     ----    ----    -----   -----
+   harvest         1       0.0     0.3     0.0
+   harvest         8       0.0     0.4     0.6
+   harvest         9       0.0     1        0
+   wind            8       0.0     0.8     0.0
+   wind            9       0.0     1.0     0.0          
+
+>> Biomass Pools
+>> Indices to be used when referring to biomass pools
+>> 1. Merchantable wood
+>> 2. Foliage
+>> 3. Other wood
+>> 5. Coarse Root
+>> 6. Fine Root
+
+DisturbFireTransferBiomass
+>> This transfers material from the biomass pools to the DOM, FPS, or air when it's killed by the fire extension. 
+>> If there is mortality from a fire,as determined by the fire extension, but nothing in this table 
+>> to tell the model what pools should receive the C then C will disappear and not be accounted for in the fluxes.
+>> You can't force the combustion of any biomass pools (e.g. foliage) with this table.
+
+>>  Intensity   From        To      To      To
+>>              Biomass     Air     FPS     DOM
+>>  ---------   -------     ----    -----   ----
+	1	1	0	0	1
+ 	1	2	0.02	0	0.98
+	1	3	0	0	1
+	1	5	0	0	1
+	1	6	0.22	0	0.78
+ 	2	1	0	0	1
+	2	2	0.44	0	0.56
+	2	3	0.4	0	0.6
+	2	5	0.04	0	0.96
+	2	6	0.27	0	0.73
+ 	3	1	0	0	1
+	3	2	0.515	0	0.485
+	3	3	0.68	0	0.32
+	3	5	0.04	0	0.96
+	3	6	0.255	0	0.745
+	4	1	0	0	1
+	4	2	0.66	0	0.34
+	4	3	0.645	0	0.355
+	4	5	0.06	0	0.94
+	4	6	0.375	0	0.625
+	5	1	0	0	1
+	5	2	0.69	0	0.31
+	5	3	0.61	0	0.39
+	5	5	0.08	0	0.92
+	5	6	0.495	0	0.505
+
+DisturbOtherTransferBiomass
+>> This transfers material from the biomass pools to the DOM, FPS, or air when it is killed by the disturbance extension. 
+>> Default is no transfer, but then C will disappear and not accounted for in the fluxes.
+>>  Disturbance     From        To      To      To
+>>  Type            Biomass     Air     FPS     DOM
+>>  -----------     -------     ----    -----   -----
+    harvest	1	0	0.8	0.2
+    harvest	2	0	0	1
+    harvest	3	0	0	1
+    harvest	5	0	0	1
+    harvest	6	0	0	1
+    wind        1       0       0       1
+    wind        2       0       0       1
+    wind        3       0       0       1
+    wind	5	0	0	1
+    wind	6	0	0	1
+    bda         1       0       0       1
+    bda         2       0.3     0       0.7
+    bda         3       0.2     0       0.8
+    bda		5	0	0	1
+    bda		6	0	0	1

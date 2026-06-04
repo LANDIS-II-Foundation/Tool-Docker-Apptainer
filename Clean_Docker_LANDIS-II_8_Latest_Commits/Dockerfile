@@ -318,6 +318,7 @@ EXPOSE 7681
 
 # changes tmux layout while running
 COPY entry.sh /bin
+RUN sed -i 's/\r$//' /bin/entry.sh
 RUN echo 'set-option -g status off' >> ~/.tmux.conf
 
 # add iRODS iCommands to user profile as JSON

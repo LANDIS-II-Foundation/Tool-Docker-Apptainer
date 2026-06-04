@@ -1,5 +1,9 @@
 # Clean_Docker_LANDIS-II_7_AllExtensions
 
+> [!WARNING]
+> **This image is deprecated.** Use [`landis-ii-v7-release`](../Docker-LANDIS-II-v7-release/) instead.
+> It provides the same extensions with improved build infrastructure and a pre-built image you can pull without building locally.
+
 This folder contains the Dockerfile necessary to create the Docker image that will contain LANDIS-II v7 and all of its available extensions.
 
 All extensions are in their most recent version compatible with v7, before the switch to v8; except for Biomass Harvest, whose latest version before v7 had a compatibility issue (see comments in the Dockerfile).

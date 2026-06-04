@@ -1,5 +1,9 @@
 # Clean_Docker_LANDIS-II_8_AllExtensions
 
+> [!WARNING]
+> **This image is deprecated.** Use [`landis-ii-v8-release`](../Docker-LANDIS-II-v8-release/) instead.
+> It provides the same extensions with improved build infrastructure, Ubuntu 24.04, and a pre-built image you can pull without building locally.
+
 This folder contains the Dockerfile necessary to create the Docker image that will contain LANDIS-II v8 and all of its available extensions in their latest versions.
 
 Some extensions are still yet not available for LANDIS-II v8 and will be updated when possible.
