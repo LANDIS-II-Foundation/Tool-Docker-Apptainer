@@ -30,17 +30,8 @@
 #   commit: dde267702c587c10d04951f4c4ea754ebeb67bfa ## v8 branch
 
 - repo: Extension-ForCS-Succession
-  org: FOR-CAST
-  ## Cherry-pick of `Improve fire severity handling in Soil.cs` (lazy
-  ## SiteVars.FireSeverity init) on top of the previous UCL2-release
-  ## ForCS pin `4f5e7b1f034161fd4fe59e0f41cd9226d0c2c8f3`. Without this
-  ## fix, ForCS NREs at `Soil.cs:729` the first time Dynamic Fire damages
-  ## a cohort (`SiteVars.FireSeverity` is null because ForCS init runs
-  ## before Dynamic Fire registers the site var). PR pending upstream.
-  ## Branch: FOR-CAST/firesev-init-uclv2 (cherry-pick of ef67149 onto
-  ## upstream LANDIS-II-Foundation 4f5e7b1f). Replace the SHA below if
-  ## the branch moves.
-  commit: fb5af9f2feef3dfdb34f861fa90baf5e9e2caaa1
+  org: LANDIS-II-Foundation
+  commit: a889d39dd3a4f3f8f681872765335ac08a4656f5 ## fix init with Dynamic Fire (ForCS#8)
 
 - repo: Extension-NECN-Succession
   org: LANDIS-II-Foundation
