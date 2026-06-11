@@ -28,7 +28,7 @@
 
 - repo: Extension-ForCS-Succession
   org: LANDIS-II-Foundation
-  commit: 4f5e7b1f034161fd4fe59e0f41cd9226d0c2c8f3
+  commit: a889d39dd3a4f3f8f681872765335ac08a4656f5 ## fix init with Dynamic Fire (ForCS#8)
 
 - repo: Extension-NECN-Succession
   org: LANDIS-II-Foundation
