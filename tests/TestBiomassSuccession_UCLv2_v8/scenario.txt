@@ -1,0 +1,66 @@
+LandisData  "Scenario"
+
+
+>> ---------------------------------------------
+>> DEFINING A SCENARIO FOR A SINGLE LANDIS-II RUN
+>>----------------------------------------------
+
+>>	1. Provide the Required Inputs
+>>	2. Select ONE Succession Extension
+>>	3. Select ONE OR MORE Disturbance Extensions (but only ONE harvest extension)
+>>	4. Select ONE OR MORE (compatible) Output Extensions
+
+>>	A selection is made active by uncommenting a line (ie, remove the >> symbols) 
+
+
+
+>>-------------------
+>> REQUIRED INPUTS
+>>-------------------
+
+Duration  	50
+
+Species   	Core_species_data.txt
+
+Ecoregions      ./ecoregions.txt
+EcoregionsMap   ./ecoregions.tif
+
+CellLength  	100 << meters, 100 x 100 m = 1 ha
+
+
+
+>> -----------------------
+>> SUCCESSION EXTENSIONS
+>> -----------------------
+
+>> 	Succession Extension     Initialization File
+>> 	--------------------     -------------------
+	"Biomass Succession"	biomass-succession.txt
+
+
+>> --------------------------
+>> DISTURBANCE EXTENSIONS
+>> -------------------------
+
+>> 	Disturbance Extension	Initialization File
+>>	--------------------	-------------------
+
+
+>>   DisturbancesRandomOrder  yes  	<< optional
+                         		<< Commented (default) is "no"
+
+>> ------------------------
+>> OUTPUT EXTENSONS
+>> ----------------------
+
+>> 	Output Extension		Initialization File
+>> 	----------------		-------------------
+  	"Output Biomass"		output_Biomass.txt
+  	"Output Biomass Community"	output-biomass-community.txt	<< cohort ages -> aging-regression check
+
+
+
+RandomNumberSeed  147     << fixed for a deterministic build-time test
+                          << Commented (default) is a RandomNumberSeed generated using the current time
+
+

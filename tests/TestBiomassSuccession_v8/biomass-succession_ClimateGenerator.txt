@@ -1,0 +1,15 @@
+LandisData "Climate Config"				
+		
+ClimateTimeSeries			Monthly_AverageAllYears
+ClimateFile				PRISM_data_AFRI_4.18.13_v2.csv
+
+SpinUpClimateTimeSeries			Monthly_AverageAllYears
+SpinUpClimateFile			PRISM_data_AFRI_4.18.13_v2.csv
+
+GenerateClimateOutputFiles		yes
+UsingFireClimate			no  << Optional parameter; default is no.
+>>FineFuelMoistureCode			100
+>>DuffMoistureCode			100
+>>DroughtCode				100
+>>FirstDayFire				30
+>>LastDayFire				320

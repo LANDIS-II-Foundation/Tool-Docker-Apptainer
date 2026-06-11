@@ -1,0 +1,71 @@
+LandisData  "Biomass Succession"
+
+
+>>------------------
+>> REQUIRED INPUTS
+>>------------------
+
+Timestep  			10
+
+SeedingAlgorithm  		WardSeedDispersal
+
+InitialCommunities      	./biomass-succession_InitialCommunities.csv
+InitialCommunitiesMap   	initial-communities.tif
+ClimateConfigFile		./biomass-succession_ClimateGenerator.txt
+
+>> CalibrateMode 		yes
+
+
+>>----------------------------
+>> LIFE HISTORY PARAMETERS
+>>----------------------------
+
+MinRelativeBiomass
+>> Shade	Percent Max Biomass
+>> Class	by Ecoregions
+>> ----------	--------------------	
+	        101     102    
+	1	25%    	25%     
+	2	45%     45% 
+	3	56%     56% 
+	4	70%     70% 
+	5	90% 	90% 
+
+
+SufficientLight
+>> Spp Shade	Probability
+>> Class	by Actual Shade
+>> ----------	--------------------	
+>>		0	1	2	3	4	5
+	1	1.0	0.5	0.25	0.0	0.0	0.0
+	2	1.0	1.0	0.5	0.25	0.0	0.0
+	3	1.0	1.0	1.0	0.5	0.25	0.0
+	4	1.0	1.0	1.0	1.0	0.5	0.25
+	5	0.1	0.5	1.0	1.0	1.0	1.0
+
+
+SpeciesDataFile		SpeciesData.csv
+
+EcoregionParameters
+>>	AET (mm)
+101	600
+102	600
+
+SpeciesEcoregionDataFile   SppEcoregionData.csv 
+
+FireReductionParameters
+>>	Severity	WoodLitter	Litter	
+>>	Fire		Reduct		Reduct	
+	1		0.0		0.5	
+	2		0.0		0.75	
+	3		0.0		1.0	
+
+HarvestReductionParameters
+>>	Name		WoodLitter	Litter	Cohort		Cohort
+>>			Reduct		Reduct	WoodRemoval	LeafRemoval
+	MaxAgeClearcut	0.5		0.15	0.8		0.0
+	PatchCutting	1.0		1.0	1.0		0.0
+
+
+
+

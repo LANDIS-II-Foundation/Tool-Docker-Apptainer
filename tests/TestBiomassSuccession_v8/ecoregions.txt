@@ -1,0 +1,9 @@
+LandisData	"Ecoregions"		
+
+>> 	Map Code		
+>>Active	Name	Description
+>>--------------------------------------------------------			
+yes	1	101		"Sandy"
+yes	2	102		"Loamy"
+
+
