@@ -160,6 +160,20 @@ WORKDIR $TESTS_DIR/TestForCS_v8
 
 RUN dotnet $LANDIS_CONSOLE scenario.txt
 
+## Biomass Succession (inputs vintage-matched to the pinned UCLv2 commit; see the test README).
+## The second RUN is a cohort-aging regression check: Output Biomass Community writes per-cell
+## cohort ages, and the maximum must advance by ~the succession timestep each step (~+50 yr over
+## this 50-yr run). A stale Biomass Succession that aged cohorts +1 per timestep instead of per
+## year (fixed in spin-up overhaul #53) would advance only ~+5 yr and fail here.
+WORKDIR $TESTS_DIR/TestBiomassSuccession_UCLv2_v8
+
+RUN dotnet $LANDIS_CONSOLE scenario.txt
+
+RUN A0=$(awk -F, 'NR>1{print $3}' community-input-file-0.csv | sort -n | tail -1); \
+    A50=$(awk -F, 'NR>1{print $3}' community-input-file-50.csv | sort -n | tail -1); \
+    echo "Biomass Succession cohort-aging check: max age yr0=$A0 yr50=$A50 (delta=$((A50 - A0)))"; \
+    [ "$((A50 - A0))" -ge 40 ] || { echo "FAIL: cohorts did not age -- stale Biomass Succession (+1/timestep) bug"; exit 1; }
+
 ################################################################
 ## Cleanup
 ################################################################

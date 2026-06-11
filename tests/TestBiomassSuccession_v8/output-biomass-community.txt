@@ -1,0 +1,9 @@
+LandisData  "Output Biomass Community"
+
+>> Writes per-cell cohort communities (MapCode, SpeciesName, CohortAge, ...) every
+>> timestep as community-input-file-<time>.csv. Used by the build-time aging-regression
+>> check: max CohortAge must advance by ~Timestep per step (a stale Biomass Succession
+>> that aged cohorts +1/timestep -- LANDIS-II-Foundation/Extension-Biomass-Succession
+>> "WHERE DID THIS CODE COME FROM? HUGE MYSTERY" -- would fail this).
+
+Timestep    10
