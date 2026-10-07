@@ -32,4 +32,13 @@
   ##
   ## Its `Landis.Library.PnETCohorts-v2.dll` (2.3.0.0) is a UCLv2, Climate v6 build that
   ## PnET-Succession master uses directly, so it is no longer rebuilt from source.
-  commit: cfd7d2a3655bc8e1e70959fee827d8b8c2f32c38
+  ##
+  ## Bumped again, from cfd7d2a3, for `Landis.Library.Succession-v10.dll` 10.1.1+9cf92634:
+  ## the merged Library-Succession#26, which fixes the race in
+  ## `ExtensionBase.ReproduceCohorts` that threw `InvalidOperationException: Collection
+  ## was modified` with `ThreadCount > 1` (Library-Succession#25). cfd7d2a3 carried
+  ## 10.0+10a5608a, which predates it. Only that one file differs between the two SLD8
+  ## commits, so no other support library moves. Note that the fix removes the crash but
+  ## does not make parallel runs reproducible from `RandomNumberSeed`
+  ## (Library-Succession#28).
+  commit: 351438a3452c9190193cca6dc416cf1be839a4d3
