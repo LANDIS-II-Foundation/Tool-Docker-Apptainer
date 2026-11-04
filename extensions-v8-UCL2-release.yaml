@@ -121,11 +121,14 @@
 ## the fields but left the same null target). Verified by building this image against both
 ## pins and running all four succession extensions. See the test READMEs.
 ##
-## master after SCF#177: v4.3 with the Climate reference moved to v6 and the committed
-## UniversalCohorts-v2 1.3 DLL removed from src/lib. No source changes from v4.3.
+## master after SCF#181: v4.3 with the Climate reference moved to v6 and the committed
+## UniversalCohorts-v2 1.3 DLL removed from src/lib (SCF#177). The one source change from
+## v4.3 is SCF#181 (fixes SCF#180): the parser assigned `WriteSpecialMaps` to
+## `WriteDNBRPredictorMaps`, so that option overrode the dNBR predictor-map option and
+## special maps were never turned on.
 - repo: Extension-Social-Climate-Fire
   org: LANDIS-II-Foundation
-  commit: dea0e9cfc8a889b49b57091a49e5d68d3dc4f7ba ## v4.3 + Climate v6
+  commit: 38d6d5a44a41fa32a4057d8ee43d88fcf4c9d86e ## v4.3 + Climate v6 + SCF#181
 
 - repo: LANDIS-II-Forest-Roads-Simulation-extension
   org: Klemet
