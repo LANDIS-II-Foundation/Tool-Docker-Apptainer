@@ -12,6 +12,14 @@ on:
   push:
     branches: [ "main" ]
 
+## One run at a time per branch, so back-to-back merges don't race to push the same tags.
+## A newer push waits for the run in progress, which is never cancelled, and then
+## publishes last. Only a run still waiting is replaced by a newer one: a release's .sif
+## job (apptainer-publish.yml) fails if its commit's run is replaced that way.
+concurrency:
+  group: docker-publish-${{ github.ref }}
+  cancel-in-progress: false
+
 env:
   REGISTRY: ghcr.io
 
