@@ -170,10 +170,11 @@
 
 - repo: Extension-Output-Biomass-PnET
   org: LANDIS-II-Foundation
-  ## `UCL_update` branch ("UCL updates and bump to v6.1", 2026-07-14); master is
-  ## still on UniversalCohorts-v1. Ships an old UniversalCohorts-v2.dll in src/lib;
-  ## see `EXT_DROP_SHADOWING_DLLS` in the UCL2 Dockerfile.
-  commit: e97cdfaeef60cec9b5c429554647bfa9354d6e25
+  ## master (v6.1.0): `UCL_update` merged in #21. No source changes from the previous
+  ## `UCL_update` pin (e97cdfae), only version strings. Commits
+  ## `Landis.Library.UniversalCohorts-v2.dll` 2.0.1 in src/lib, the same build as
+  ## Support-Library-Dlls-v8; see `EXT_DROP_SHADOWING_DLLS` in the UCL2 Dockerfile.
+  commit: 3945d742086323f91ac526af70fa0bf36c425d8e
 
 - repo: Extension-Output-Biomass-Reclass
   org: LANDIS-II-Foundation
