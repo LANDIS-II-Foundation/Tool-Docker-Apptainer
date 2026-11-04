@@ -124,11 +124,11 @@ RUN scripts/install_support_libraries_v8.sh support-libraries-v8-UCL2-release.ya
 ##  - it uses sparse checkout of specific directories to avoid downloading the entire repo;
 ##  - it cleans up afterwards, removing the extension source files to save space in the image;
 ##  - `EXT_DROP_SHADOWING_DLLS=true` makes it delete an extension's committed copy of any
-##    DLL already in `build/extensions` before building it. Otherwise the
-##    `Landis.Library.UniversalCohorts-v2.dll` 1.3.0.0 that Social Climate Fire, Forest
-##    Roads and Output Biomass PnET commit replaces the Support-Library-Dlls-v8 copy, and
-##    Magic Harvest's committed `Landis.Extension.BiomassHarvest-v7.dll` replaces the
-##    Biomass Harvest build;
+##    DLL already in `build/extensions` before building it. Otherwise Magic Harvest's
+##    committed `Landis.Extension.BiomassHarvest-v7.dll` replaces the Biomass Harvest
+##    build. Output Biomass PnET's committed `Landis.Library.UniversalCohorts-v2.dll`
+##    now matches the Support-Library-Dlls-v8 copy, but would replace a newer one (earlier
+##    pins of it, Social Climate Fire and Forest Roads committed the faulty 1.3.0.0);
 ##  - entries marked `type: tool` are skipped here and built after the console
 ##    rebuild (see below);
 
