@@ -1,0 +1,30 @@
+LandisData  Scenario
+
+>> PnET cohort-removal check for the UCLv2 image (see README.md): Biomass Harvest clear-cuts
+>> every stand (all active cells) at year 10, so no cohort in the year-20 community output may
+>> be older than 20 years.
+
+Duration  20
+Species   ./inputs/core/species.txt
+
+Ecoregions      ./inputs/core/ecoregion.txt
+EcoregionsMap   ./inputs/core/ecoregion.img
+
+CellLength  30 << meters, so cell area = 900 m2
+
+
+>> Succession Extension     Initialization File
+>> --------------------     -------------------
+   "PnET-Succession"    ./inputs/succession/pnetsuccession.txt
+
+
+>> Disturbance Extensions   Initialization File
+>> ----------------------   -------------------
+   "Biomass Harvest"    ./inputs/disturbances/biomassHarvest/harvest_ClearcutAll_yr10.txt
+
+
+>> Output Extensions        Initialization File
+>> -----------------        -------------------
+   "Output Biomass Community"	./inputs/output/BiomassCommunity/output_Biomass_Community.txt
+
+ RandomNumberSeed	1111

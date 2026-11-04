@@ -1,0 +1,42 @@
+LandisData  "Biomass Harvest"
+
+>> Used only by scenario_UCLv2_harvest-check.txt: clear-cut every stand once, at year 10.
+
+>>----------------
+>> REQUIRED INPUTS
+>>-----------------
+Timestep		10
+
+ManagementAreas 	./inputs/disturbances/biomassHarvest/harvest_Management_zones.tif
+
+Stands     		./inputs/disturbances/biomassHarvest/harvest_Stands.tif
+
+
+>> -------------------------
+>> HARVESTING PRESCRIPTIONS
+>> -------------------------
+
+Prescription ClearcutAll
+    StandRanking 	MaxCohortAge
+    SiteSelection 	Complete
+    CohortsRemoved 	ClearCut
+
+
+>> ----------------------------------
+>> HARVESTING IMPLEMENTATION
+>> ---------------------------------
+
+    HarvestImplementations
+>>	Mgmt Area	Prescription		Harvest Area	BeginTime	EndTime
+>> 	---------   	------------   		------------   	---------- 	--------
+	1		ClearcutAll		100%		10		10
+
+
+>> ------------
+>> OUTPUTS
+>> ----------
+
+PrescriptionMaps    output/harvestCheck/biomass-harvest-prescripts-{timestep}.tif
+BiomassMaps         output/harvestCheck/biomass-removed-{timestep}.tif
+EventLog            output/harvestCheck/biomass-harvest-event-log.csv
+SummaryLog	    output/harvestCheck/biomass-harvest-summary-log.csv

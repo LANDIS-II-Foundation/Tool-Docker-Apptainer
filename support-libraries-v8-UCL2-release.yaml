@@ -30,8 +30,9 @@
   ## otherwise replace this copy. The range also adds
   ## `Landis.Library.Climate-v6.dll` and updates `Landis.Library.PnETCohorts-v2.dll`.
   ##
-  ## Its `Landis.Library.PnETCohorts-v2.dll` (2.3.0.0) is a UCLv2, Climate v6 build that
-  ## PnET-Succession master uses directly, so it is no longer rebuilt from source.
+  ## Its `Landis.Library.PnETCohorts-v2.dll` (2.3.0.0) is replaced before the extensions are
+  ## built by 2.4.1 from `libraries-v8-UCL2-release-prebuild.yaml`, which PnET-Succession
+  ## 6.1.2 needs.
   ##
   ## Bumped again, from cfd7d2a3, for `Landis.Library.Succession-v10.dll` 10.1.1+9cf92634:
   ## the merged Library-Succession#26, which fixes the race in

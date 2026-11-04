@@ -35,10 +35,13 @@
 
 - repo: Extension-PnET-Succession
   org: LANDIS-II-Foundation
-  ## master ("Update with new UC and climate library", 2026-09-25): UniversalCohorts-v2,
-  ## Succession-v10, and Climate v6. Uses the prebuilt `Landis.Library.PnETCohorts-v2.dll`
-  ## 2.3.0.0 (Climate v6) from Support-Library-Dlls-v8, so it is no longer rebuilt from source.
-  commit: 08ad3fcf3eabf91ca6149d05686dbb2bb6163019
+  ## tag v6.1.2 (Extension-PnET-Succession#31): UniversalCohorts-v2, Succession-v10, and
+  ## Climate v6. Registers PnET's own site cohorts as `Succession.UniversalCohorts`, so harvest
+  ## and fire remove cohorts from PnET itself rather than from a per-timestep copy. Needs
+  ## `Landis.Library.PnETCohorts-v2` 2.4, built from source in
+  ## `libraries-v8-UCL2-release-prebuild.yaml`; the two must move together. Master is four
+  ## commits later and changes only the installer, docs and CI workflow.
+  commit: 3681876b6ec88430e6f18bc058dff712ab1f601a
 
 ## Disturbance and Other Extensions
 - repo: Extension-Base-BDA
