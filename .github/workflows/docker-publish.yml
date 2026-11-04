@@ -12,6 +12,14 @@ on:
   push:
     branches: [ "main" ]
 
+## One run per branch: a newer push cancels the run still in progress, so back-to-back
+## merges publish only the latest commit's images instead of racing to push the same tags.
+## A release's .sif job (apptainer-publish.yml) waits for its commit's run here, so it
+## fails if a later push cancels that run.
+concurrency:
+  group: docker-publish-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   REGISTRY: ghcr.io
 
