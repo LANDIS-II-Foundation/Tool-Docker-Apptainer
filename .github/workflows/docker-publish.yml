@@ -105,6 +105,9 @@ jobs:
       packages: write
       attestations: write
       id-token: write
+      ## actions/attest v4 also records each image on the org's Linked Artifacts page
+      ## (a "storage record"); without this it warns on every job
+      artifact-metadata: write
 
     steps:
       - name: Checkout repository
