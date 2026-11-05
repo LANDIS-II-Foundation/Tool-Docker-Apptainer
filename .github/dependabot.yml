@@ -1,0 +1,17 @@
+## Keep the actions in .github/workflows up to date.
+## - one grouped PR per week for all action updates;
+## - cooldown: only propose a release once it is 14 days old.
+## PRs don't run CI here (docker-publish runs after merge to main), so check the first
+## publish run after merging one; test apptainer-publish with a manual (workflow_dispatch) run.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 14
+    groups:
+      github-actions:
+        patterns:
+          - "*"

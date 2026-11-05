@@ -42,8 +42,8 @@ permissions:
 jobs:
   build-sif:
     if: github.event_name != 'release' || !github.event.release.prerelease
-    ## Pinned: setup-apptainer (unmaintained since 2022) installs a 1.3.6 .deb that
-    ## is untested on Ubuntu 26.04, which `ubuntu-latest` moves to on 2026-10-19.
+    ## Pinned, like the Apptainer version below, so the tools that build the release
+    ## .sif files change only on purpose.
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
@@ -77,8 +77,14 @@ jobs:
           echo "Waiting for Docker build run ${run_id} ..."
           gh run watch "$run_id" --repo "${{ github.repository }}" --interval 30 --exit-status > /dev/null
 
+      ## v3 installs Apptainer unprivileged from its portable release RPM (v2 installed a
+      ## 1.3.6 .deb). Its default is the latest release, so pin the version that builds the
+      ## .sif files; Dependabot updates the action, not this input. SIFs keep the default
+      ## gzip compression, which older Apptainer and Singularity installations can read.
       - name: Set up Apptainer
-        uses: eWaterCycle/setup-apptainer@v2
+        uses: eWaterCycle/setup-apptainer@95b5c781df5f72fd2271cc3cff06904a09d2a087 # v3.0.0
+        with:
+          apptainer-version: "1.5.4"
 
       - name: Build .sif from the published Docker image
         env:
@@ -106,7 +112,7 @@ jobs:
 
       - name: Upload .sif as a workflow artifact
         if: github.event_name == 'workflow_dispatch'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.image }}-sif
           path: ${{ env.SIF }}
