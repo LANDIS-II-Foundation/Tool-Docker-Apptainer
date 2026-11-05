@@ -93,6 +93,17 @@ RUN sed -i 's/\r$//' $LANDIS_DIR/scripts/*.sh \
 
 WORKDIR $LANDIS_DIR
 
+## Keep the built apps' run-time probe paths out of root's home (unreadable by non-root Docker
+## users; hidden from Apptainer run as root, which binds the host's /root over it):
+##  - `dotnet build` (.NET Core 2.2) doesn't copy NuGet packages into the output, so the apps
+##    load them from the restore folder, by default /root/.nuget/packages;
+##  - the SDK also adds a probe of the empty /root/.dotnet/store, which only prints
+##    "realpath(): Permission denied" for non-root users.
+## ARG rather than ENV: build only, so a non-root user restoring packages in the container
+## still uses their own ~/.nuget/packages.
+ARG NUGET_PACKAGES="/opt/.nuget/packages"
+ARG SkipDefaultAdditionalProbingPaths=true
+
 ## get and build the core model
 RUN git clone $LANDIS_GITHUB/Core-Model-v7-LINUX.git \
   && dotnet build $LANDIS_CORE_DIR/Tool-Console/src -c Release
@@ -155,6 +166,16 @@ RUN scripts/install_extensions_v7.sh extensions-v7-release.yaml $LANDIS_DIR
 ################################################################
 ## Testing
 ################################################################
+
+## LANDIS-II must run, without warnings, for a user who can't read /root (mode 700). With the
+## probe paths under /root, both tools failed here with "An assembly specified in the
+## application dependencies manifest ... was not found".
+RUN cd /tmp \
+ && su nobody -s /bin/sh -c "$DOTNET_ROOT/dotnet $LANDIS_EXT_TOOL list" > ext.log 2>&1; \
+    su nobody -s /bin/sh -c "$DOTNET_ROOT/dotnet $LANDIS_CONSOLE" > console.log 2>&1; \
+    grep -q '^Extension ' ext.log && grep -q 'No scenario file specified' console.log \
+      && ! grep -q 'Permission denied' ext.log console.log; \
+    rc=$?; head -n 5 ext.log console.log; rm ext.log console.log; exit $rc
 
 ## TODO !!
 # COPY ./tests $TESTS_DIR
