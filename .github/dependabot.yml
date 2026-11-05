@@ -1,0 +1,26 @@
+## Keep CI tooling up to date, with a 14-day cooldown: a release is proposed only once
+## it is 14 days old.
+##  - github-actions: the actions in .github/workflows, one grouped PR per week;
+##  - docker: the Apptainer image that builds the release .sif files
+##    (.github/apptainer/Dockerfile).
+## PRs don't run CI here (docker-publish runs after merge to main), so check the first
+## publish run after merging one; test apptainer-publish with a manual (workflow_dispatch) run.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 14
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "docker"
+    directory: "/.github/apptainer"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 14

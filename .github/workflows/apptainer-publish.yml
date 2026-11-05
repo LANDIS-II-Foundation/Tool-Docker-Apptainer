@@ -6,7 +6,9 @@ name: Build and publish Apptainer (.sif) images
 ##
 ## Why this design:
 ##   - We convert straight from `docker://ghcr.io/...`, so there is no
-##     `docker save` / tarball step and no local Docker daemon needed.
+##     `docker save` / tarball step.
+##   - Apptainer runs in its official image, pinned in `.github/apptainer/Dockerfile`
+##     so that Dependabot can update it.
 ##   - Only the simulation images are converted (see matrix below). The R /
 ##     RStudio images are larger and not a typical HPC batch use case, so they
 ##     are intentionally excluded; if ever needed, publish those as an OCI/ORAS
@@ -42,8 +44,8 @@ permissions:
 jobs:
   build-sif:
     if: github.event_name != 'release' || !github.event.release.prerelease
-    ## Pinned: setup-apptainer (unmaintained since 2022) installs a 1.3.6 .deb that
-    ## is untested on Ubuntu 26.04, which `ubuntu-latest` moves to on 2026-10-19.
+    ## Pinned, like the Apptainer image, so the tools that build the release .sif files
+    ## change only on purpose.
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
@@ -77,8 +79,14 @@ jobs:
           echo "Waiting for Docker build run ${run_id} ..."
           gh run watch "$run_id" --repo "${{ github.repository }}" --interval 30 --exit-status > /dev/null
 
+      - name: Check out the Apptainer image definition
+        uses: actions/checkout@v7
+        with:
+          sparse-checkout: .github/apptainer
+          persist-credentials: false
+
       - name: Set up Apptainer
-        uses: eWaterCycle/setup-apptainer@v2
+        run: docker build -t sif-builder .github/apptainer
 
       - name: Build .sif from the published Docker image
         env:
@@ -93,7 +101,10 @@ jobs:
           src="docker://ghcr.io/${owner}/${{ matrix.image }}:${tag}"
           out="${{ matrix.image }}.sif"
           echo "Building ${out} from ${src}"
-          apptainer build "${out}" "${src}"
+          ## Building runs as root in the container and needs no extra privileges.
+          docker run --rm -v "$PWD:/work" -w /work \
+            -e APPTAINER_DOCKER_USERNAME -e APPTAINER_DOCKER_PASSWORD \
+            sif-builder apptainer build "${out}" "${src}"
           ls -lh "${out}"
           echo "SIF=${out}" >> "$GITHUB_ENV"
 
@@ -101,12 +112,11 @@ jobs:
         if: github.event_name == 'release'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ## No checkout in this job, so gh can't infer the repo from .git
         run: gh release upload "${{ github.event.release.tag_name }}" "${SIF}" --clobber --repo "${{ github.repository }}"
 
       - name: Upload .sif as a workflow artifact
         if: github.event_name == 'workflow_dispatch'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.image }}-sif
           path: ${{ env.SIF }}
