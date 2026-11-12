@@ -121,7 +121,7 @@ RUN scripts/install_support_libraries_v8.sh support-libraries-v8-UCL2-release.ya
 ##
 ##  - each replaces its Support-Library-Dlls-v8 copy in `build/extensions`, so it has to
 ##    run after the step above and before the extensions are built;
-##  - currently `Landis.Library.PnETCohorts-v2` 2.4.1, which PnET-Succession 6.1.2 needs;
+##  - currently `Landis.Library.PnETCohorts-v2` 2.4.2, which PnET-Succession 6.1.3 needs;
 ##    see `libraries-v8-UCL2-release-prebuild.yaml`.
 
 COPY libraries-v8-UCL2-release-prebuild.yaml $LANDIS_DIR/libraries-v8-UCL2-release-prebuild.yaml

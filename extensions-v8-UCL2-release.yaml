@@ -35,13 +35,14 @@
 
 - repo: Extension-PnET-Succession
   org: LANDIS-II-Foundation
-  ## tag v6.1.2 (Extension-PnET-Succession#31): UniversalCohorts-v2, Succession-v10, and
-  ## Climate v6. Registers PnET's own site cohorts as `Succession.UniversalCohorts`, so harvest
-  ## and fire remove cohorts from PnET itself rather than from a per-timestep copy. Needs
-  ## `Landis.Library.PnETCohorts-v2` 2.4, built from source in
-  ## `libraries-v8-UCL2-release-prebuild.yaml`; the two must move together. Master is four
-  ## commits later and changes only the installer, docs and CI workflow.
-  commit: 3681876b6ec88430e6f18bc058dff712ab1f601a
+  ## tag v6.1.3 (master, Extension-PnET-Succession#37): UniversalCohorts-v2, Succession-v10, and
+  ## Climate v6. Registers PnET's own site cohorts as `Succession.UniversalCohorts` (since 6.1.2,
+  ## Extension-PnET-Succession#31), so harvest and fire remove cohorts from PnET itself rather
+  ## than from a per-timestep copy. 6.1.3 itself changes only comments, console messages and
+  ## names (it deletes the commented-out `UpdateUniversalCohorts()` call). Built
+  ## against `Landis.Library.PnETCohorts-v2` 2.4.2 from `libraries-v8-UCL2-release-prebuild.yaml`;
+  ## the two must move together.
+  commit: 02cb690743264a68cd27736fd9c0ed3577a74ad4
 
 ## Disturbance and Other Extensions
 - repo: Extension-Base-BDA
@@ -172,8 +173,10 @@
   org: LANDIS-II-Foundation
   ## master (v6.1.0): `UCL_update` merged in #21. No source changes from the previous
   ## `UCL_update` pin (e97cdfae), only version strings. Commits
-  ## `Landis.Library.UniversalCohorts-v2.dll` 2.0.1 in src/lib, the same build as
-  ## Support-Library-Dlls-v8; see `EXT_DROP_SHADOWING_DLLS` in the UCL2 Dockerfile.
+  ## `Landis.Library.UniversalCohorts-v2.dll` 2.0.1 in src/lib, older than the 2.0.2 in
+  ## Support-Library-Dlls-v8; `EXT_DROP_SHADOWING_DLLS` in the UCL2 Dockerfile deletes it before
+  ## the build. Needs no changes for PnETCohorts-v2 2.4.2 (Extension-Output-Biomass-PnET#24 was
+  ## closed unmerged).
   commit: 3945d742086323f91ac526af70fa0bf36c425d8e
 
 - repo: Extension-Output-Biomass-Reclass
