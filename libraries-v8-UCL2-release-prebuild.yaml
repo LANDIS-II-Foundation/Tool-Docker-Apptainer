@@ -6,22 +6,31 @@
 ## UCLv1 images. Order matters: later entries may reference earlier ones.
 ## Installed by `scripts/install_libraries_v8.sh`.
 
-## `Landis.Library.PnETCohorts-v2` 2.4.1 (release v2.4.1, main 67d597ae). Support-Library-Dlls-v8
-## 351438a3 still ships 2.3.0.0 (built from 25d18875), whose `SiteVars.UpdateUniversalCohorts()`
+## `Landis.Library.PnETCohorts-v2` 2.4.2 (release v2.4.2, main b45008f5). Support-Library-Dlls-v8
+## 8b2a845b still ships 2.3.0.0 (built from 25d18875), whose `SiteVars.UpdateUniversalCohorts()`
 ## gave the other extensions a fresh copy of each site's PnET cohorts every timestep: harvest and
 ## fire removed cohorts from the copy, and PnET's own cohorts kept them. 2.4 drops that copy, and
-## PnET-Succession 6.1.2 registers PnET's own site cohorts as `Succession.UniversalCohorts` instead
-## (Library-PnET-Cohort#14, Extension-PnET-Succession#31). The two must move together: 2.4 has no
-## `UpdateUniversalCohorts()` for older PnET-Succession to call, and 2.3 registers the site variables
-## that 6.1.2 now registers itself. 2.4.1 also fixes the rounding of above-ground biomass
-## (Library-PnET-Cohort#12).
+## PnET-Succession 6.1.2 and later register PnET's own site cohorts as `Succession.UniversalCohorts`
+## instead (Library-PnET-Cohort#14, Extension-PnET-Succession#31). The two must move together: 2.4
+## has no `UpdateUniversalCohorts()` for older PnET-Succession to call, and 2.3 registers the site
+## variables that 6.1.2 and later register themselves. 2.4.1 also fixes the rounding of above-ground
+## biomass (Library-PnET-Cohort#12).
+##
+## 2.4.2 (Library-PnET-Cohort#17) overrides the UniversalCohorts-v2 2.0.2 members, so other
+## extensions see PnET cohorts' age and biomass instead of 0 (Library-PnET-Cohort#18). It also
+## fixes the dead pools and above-ground biomass after a disturbance (#20), removes a second
+## cohort reduction in `RemoveMarkedCohorts` (#21), and stops initialization failing with
+## `KeyNotFoundException` when a species' initial cohorts fall within `CohortBinSize` of each other
+## (#19, still open for the merge rules). It needs UniversalCohorts-v2 2.0.2, from
+## `support-libraries-v8-UCL2-release.yaml`.
 ##
 ## Its committed `src/lib/Landis.Library.Climate-v6.dll` is identical to the
 ## Support-Library-Dlls-v8 copy, and its .csproj excludes `lib\**`, so it compiles against
-## the `build/extensions` libraries. The v2.4.1 release DLL was built against
-## Support-Library-Dlls-v8 `main` (= 351438a3), so no other library has to be rebuilt.
+## the `build/extensions` libraries. The v2.4.2 release DLL was built against
+## Support-Library-Dlls-v8 `main` (= 8b2a845b; the release ships the same UniversalCohorts-v2
+## DLL), so no other library has to be rebuilt.
 ##
 ## Remove this entry once Support-Library-Dlls-v8 ships a 2.4.x build.
 - repo: Library-PnET-Cohort
   org: LANDIS-II-Foundation
-  commit: 67d597ae1bb7db16430299aa83de3a3903a53b31 ## v2.4.1
+  commit: b45008f52a3092d3a3ae55e8dda6df3d5a3d475a ## v2.4.2

@@ -15,7 +15,7 @@ while its upstream UCL v2 migration is unfinished (see issue #59). Re-enable the
 they get their updates. The inputs are shared, so a change to the inputs affects both runs.
 
 Beyond confirming the extensions load, the UCLv2 run exercises `Landis.Library.PnETCohorts-v2`
-2.4.1, which that image builds from source (see `libraries-v8-UCL2-release-prebuild.yaml`).
+2.4.2, which that image builds from source (see `libraries-v8-UCL2-release-prebuild.yaml`).
 
 ## Harvest check (UCLv2 image only)
 
