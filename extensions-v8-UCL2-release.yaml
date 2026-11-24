@@ -72,7 +72,7 @@
 
 - repo: Extension-Biomass-Hurricane
   org: LANDIS-II-Foundation
-  commit: bef44491f37ffd6950d26bf9d1425db509e974fe
+  commit: 1c970f5547460a9689fc5220342c3f5155134686
 
 - repo: Extension-Dynamic-Biomass-Fuels
   org: LANDIS-II-Foundation
